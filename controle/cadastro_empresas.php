@@ -1,5 +1,5 @@
 <?php
-	$banco = new mysqli("localhost", "root", "Dodgef80206", "bd_disparo_marketing");
+	$banco = new mysqli("localhost", "root", "", "bd_disparo_marketing");
 
 	if ($banco->connect_errno != 0) {
 		//Nao conseguiu conectar com o banco, "!=0" é o codigo de erro
