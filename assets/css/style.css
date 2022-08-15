@@ -1,0 +1,32 @@
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+
+  main {
+    flex: 1 0 auto;
+  }
+
+  header, main, footer {
+    flex-shrink: 0;
+}
+
+.modal{
+    z-index: 100;
+    opacity: 100;
+}
+/*.popup{
+	position: fixed;
+	top:0; bottom:0;
+	left:0; right:0;
+	margin: auto;
+	width:300px;
+	height: 180px;
+	padding: 15px;
+}	*/
+
+.relatorio:hover{
+  background-color: rgba(193, 0, 0, 0.708);
+  color: aliceblue;
+}
