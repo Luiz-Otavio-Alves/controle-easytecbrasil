@@ -17,7 +17,7 @@ $msg = "";
         $var_cod_int = intval($var_cod);
     }
 
-    //Cadastra Cliente
+    //Atualiza Cliente
     if (isset($_POST["btCadastrar"])) 
     {
         echo $var_cod_int;
@@ -27,7 +27,7 @@ $msg = "";
         $email_usuario = $_POST["email"];
         $senha_usuario = $_POST["senha"];
 
-        $sql = "UPDATE usuarios SET nome = '$nome_usuario', 
+        $sql1 = "UPDATE usuarios SET nome = '$nome_usuario', 
                                     empresa = '$nome_empresa', 
                                     contato = '$contato_usuario', 
                                     email = '$email_usuario', 
@@ -48,7 +48,7 @@ $msg = "";
     session_start();
 
     if (!isset($_SESSION["email"],$_SESSION["senha"])){ // aqui péga o valor do nome do campo da pagina de login
-        echo "<script>window.location='login.php'</script>"; //caso não esteja correto ela envia para a pagina determianda
+        echo "<script>window.location='../login.php'</script>"; //caso não esteja correto ela envia para a pagina determianda
     }
 ?>
 
@@ -112,7 +112,7 @@ $msg = "";
         <!--Termina Pop-UP-->
 
         <!---inicia formulario--->
-        <form method="post" action="usuarios.php" class="card bg-white col-lg-12" style="margin-top:2%; padding:4%;">
+        <form method="POST" action="" class="card bg-white col-lg-12" style="margin-top:2%; padding:4%;">
             <div class="row">
                 <div class="form-outline mb-4 mx-4 col">
                     <label class="form-label" for="nome">Nome Completo</label>
