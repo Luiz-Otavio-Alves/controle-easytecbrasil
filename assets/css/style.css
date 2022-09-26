@@ -12,6 +12,38 @@ body {
     flex-shrink: 0;
 }
 
+.navbar{
+  background-color: rgb(55, 61, 75);
+}
+
+.cor-link{
+  color: #af0c00;
+}
+
+.busca-user{
+  box-shadow: 2px 2px 20px 3px rgb(142, 142, 142);
+}
+
+#card-form{
+  background-color: rgb(255, 255, 255);
+  box-shadow: 5px 2px 20px 3px rgb(142, 142, 142);
+}
+
+#estilo-table{
+  box-shadow: 5px 2px 20px 3px rgb(142, 142, 142);
+}
+
+#cab-tab{
+  background-color: rgb(55, 61, 75);
+  color: white;
+}
+
+footer{
+  background-color: rgb(55, 61, 75);
+  color: white;
+  
+}
+
 .modal{
     z-index: 100;
     opacity: 100;
@@ -26,7 +58,3 @@ body {
 	padding: 15px;
 }	
 
-.relatorio:hover{
-  background-color: rgba(193, 0, 0, 0.708);
-  color: aliceblue;
-}

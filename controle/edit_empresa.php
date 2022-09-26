@@ -9,37 +9,21 @@
 		//echo "<h3> Acesso concedido ao banco!! </h3>";
 	}
 
-    //CADASTRA EMPRESA
-    if (isset($_POST["btCadastrar"])) {
-        //DADOS PARA CADASTRAR
-        $nome_emp = $_POST["nome_emp"];
-        $cnpj = $_POST["cnpj"];
-        $tipo_servico = $_POST["tipo_servico"];
-        $cidade_emp = $_POST["cidade_emp"];
-        $endereco_emp = $_POST["endereco_emp"];
-        $estado_emp = $_POST["estado_emp"];
-        $responsavel = $_POST["responsavel"];
-        $mail_responsavel = $_POST["mail_responsavel"];
-        $tel_responsavel = $_POST["tel_responsavel"];
-        $ip_pabx = $_POST["ip_pabx"];
-        $anot_emp = $_POST["anot_emp"];
-        //INSERE NO BANCO DE DADOS
-        $sql = "INSERT INTO empresas VALUES (null, '$nome_emp', '$cnpj', '$tipo_servico', '$endereco_emp', '$cidade_emp',
-                                        '$estado_emp', '$responsavel', '$mail_responsavel', '$tel_responsavel', '$ip_pabx', '$anot_emp')";
-
-        //CONFERE SE FOI CADASTRADO COM ÊXITO
-        if(mysqli_query($banco, $sql)){
-            $msg = "USUARIO cadastrado com sucesso!";
-        }else{
-            $msg = "Erro ao cadastrar USUARIO!";
-        }
-
+    if(isset($_GET["id_empresa"]))
+    {
+        $var_cod = $_GET["id_empresa"];
+        $var_cod_int = intval($var_cod);
     }
+
+
+    $sql = "SELECT * FROM empresas WHERE id_empresas = $var_cod_int";
+    $empresa = mysqli_query($banco, $sql);
+    $empresas = mysqli_fetch_array($empresa);
 
     //CONFIRMA SESSÃO PARA AUTORIZAR ACESSO A PAGINA
     session_start();
     if (!isset($_SESSION["email"],$_SESSION["senha"])){ // aqui péga o valor do nome do campo da pagina de login
-        echo "<script>window.location='login.php'</script>"; //caso não esteja correto ela envia para a pagina determianda
+        echo "<script>window.location='../login.php'</script>"; //caso não esteja correto ela envia para a pagina determianda
     }
 ?>
 
@@ -49,7 +33,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Easytec Brasil | Cadastros Empresas</title>
+    <title>Easytec Brasil | Edição Empresas</title>
 
     <link rel="shortcut icon" href="img/logo.png" />
     <!--Import Google Icon Font-->
@@ -92,23 +76,25 @@
 
     <div class="container" style="margin-top: 2%; margin-bottom: 2%;">
         <div class="container section row">
-        <h5>Cadastro de empresas</h5>
+        <h5><?php echo $empresas['nome_emp']; ?></h5>
 
             <!---inicia formulario--->
             <form method="post" action="#" class="card col-12" id="card-form" style="margin-top:2%; padding:4%;">
                 <div class="row">
                     <div class="form-outline mb-4 mx-4 col-5">
                         <label class="form-label" for="descricao">Descrição</label>
-                        <input type="text" class="form-control form-control-sm required" name="nome_emp"/>
+                        <input type="text" class="form-control form-control-sm required" name="nome_emp"
+                                value="<?php echo $empresas['nome_emp']; ?>"/>
                     </div>
                     <div class="form-group mb-4 mx-2 col-2">
                         <label for="cnpj">CNPJ</label>
-                        <input type="text" class="form-control form-control-sm required" name="cnpj"/>
+                        <input type="text" class="form-control form-control-sm required" name="cnpj"
+                                value="<?php echo $empresas['cnpj']; ?>"/>
                     </div>
                     <div class="form-group mb-4 mx-4 col-3">
                         <label for="cnpj">Tipo de Serviço</label>
                         <select class="form-control" name="tipo_servico" id="empresa">
-                            <option>--</option>
+                            <option><?php echo $empresas['tipo_servico']; ?></option>
                             <option>Virtual Dedicado</option>
                             <option>Virtual Compartilhado</option>
                             <option>Fisico Dedicado</option>
@@ -119,16 +105,18 @@
                 <div class="row"> 
                     <div class="form-outline mb-4 mx-4 col-5">
                         <label class="form-label" for="endereco">Endereço</label>
-                        <input type="text" class="form-control form-control-sm" name="endereco_emp" placeholder="Rua/N°, Bairro"/>
+                        <input type="text" class="form-control form-control-sm" name="endereco_emp" placeholder="Rua/N°, Bairro"
+                                value="<?php echo $empresas['endereco_emp']; ?>"/>
                     </div>
                     <div class="form-outline mb-4 mx-2 col-3">
                         <label class="form-label" for="cidade">Cidade</label>
-                        <input type="text" class="form-control form-control-sm" name="cidade_emp"/>
+                        <input type="text" class="form-control form-control-sm" name="cidade_emp"
+                                value="<?php echo $empresas['cidade_emp']; ?>"/>
                     </div>
                     <div class="form-outline mb-4 mx-4 col-2">
                         <label class="form-label" for="estado">Estado</label>
                         <select class="form-control" name="estado_emp" id="empresa">
-                            <option>--</option>
+                            <option><?php echo $empresas['estado_emp']; ?></option>
                             <option>MG</option>
                             <option>SP</option>
                             <option>RJ</option>
@@ -140,42 +128,49 @@
                 <div class="row">
                     <div class="form-outline mb-4 mx-4 col">
                         <label class="form-label" for="responsavel">Responsável</label>
-                        <input type="text" class="form-control form-control-sm" name="responsavel" placeholder="TI"/>
+                        <input type="text" class="form-control form-control-sm" name="responsavel" placeholder="TI"
+                                value="<?php echo $empresas['responsavel']; ?>"/>
                     </div>
                     <div class="form-outline mb-4 mx-4 col">
                         <label class="form-label" for="email">E-mail</label>
-                        <input type="email" class="form-control form-control-sm" name="mail_responsavel" placeholder="exemplo@exemplo.com.br"/>
+                        <input type="email" class="form-control form-control-sm" name="mail_responsavel" placeholder="exemplo@exemplo.com.br"
+                            value="<?php echo $empresas['mail_responsavel']; ?>"/>
                     </div>
                     <div class="form-outline mb-4 mx-4 col">
                         <label class="form-label" for="telefone">Telefone</label>
-                        <input type="text" class="form-control form-control-sm" name="tel_responsavel" placeholder="(XX)XXXXX-XXXX"/>
+                        <input type="text" class="form-control form-control-sm" name="tel_responsavel" placeholder="(XX)XXXXX-XXXX"
+                            value="<?php echo $empresas['tel_responsavel']; ?>"/>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="form-outline mb-4 mx-4 col-4">
                         <label class="form-label" for="ip">IP Pabx</label>
-                        <input type="text" class="form-control form-control-sm" name="ip_pabx"/>
+                        <input type="text" class="form-control form-control-sm" name="ip_pabx"
+                                value="<?php echo $empresas['ip_pabx']; ?>"/>
+                    </div>
+                    <div class="form-outline mb-4 mx-4 col-4">
+                        <a class="btn btn-warning mb-4 ml-4 mt-4 px-5" href="equipamentos.php">Equipamentos</a> 
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="form-outline mb-4 mx-4 col">
                         <label class="form-label" for="senha">Anotações</label>
-                        <textarea type="text" class="form-control" name="anot_emp" placeholder="Digite seu texto"></textarea>
+                        <textarea type="text" class="form-control" name="anot_emp" placeholder="Digite seu texto"><?php echo $empresas['anot_emp']; ?></textarea>
                     </div>
                 </div>
 
                 <div class="row justify-content-center">
-                    <a class="ml-4 mt-4 px-4"><button class="btn btn-dark"  type="submit" name="btCadastrar" value="Cadastrar">Cadastrar 
-                        <i class="material-icons right">add_circle_outline</i></button></a>
+                    <a class="ml-4 mt-4 px-4"><button class="btn btn-dark"  type="submit" name="btCadastrar" value="Atualizar">Atualizar</button></a>
                 </div>
 
             </form>
             <!---termina formulario--->
 
             <div class="row justify-content-end">
-            <a class="btn btn-secondary mb-4 ml-4 mt-4 px-5" href="../index.php">Voltar</a>
+                <a class="btn btn-secondary mb-4 ml-4 mt-4 px-5" href="../index.php">Voltar</a>
+                <a href='' class="justify-content-right"><button class="btn btn-danger ml-4 mt-4 px-3">Excluir</button></a>  
             </div>
         </div>
     </div>

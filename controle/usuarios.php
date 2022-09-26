@@ -6,21 +6,17 @@
 		echo "<h4> Erro ao conectar com o Banco de Dados</h4> <h5>Erro: " . $banco->connect_errno . " </h5>";
 	} else {
 		//O codigo "0" indica que conseguiu conectar no banco
-		//echo "<h3> Acesso concedido ao banco!! </h3>";
 	}
 
-    //Exclui Usuario Cadastrado
-    if (isset($_GET["id_u"])) {
-        $codigo_cliente = $_GET["ud"];
-        $var_chip_d = intval($codigo_cliente);
-
-        $sql = "DELETE FROM clientes WHERE codigo_chip = $var_chip_d";        
-        mysqli_query($banco, $sql);
-    }  
+    //Exclui usuario cadastrado
+    if(isset($_GET["id_excluir"])){
+        $sql2 = "DELETE FROM usuarios WHERE id = $var_cod_int";
+        mysqli_query($banco, $sql2);
+    }
 
     //CONFIRMA SESSÃO PARA AUTORIZAR ACESSO A PAGINA
     session_start();
-    if (!isset($_SESSION["email"],$_SESSION["senha"])){ // aqui péga o valor do nome do campo da pagina de login
+    if (!isset($_SESSION["email"],$_SESSION["senha"])){ // aqui pega o valor do nome do campo da pagina de login
         echo "<script>window.location='login.php'</script>"; //caso não esteja correto ela envia para a pagina determianda
     }
 ?>
@@ -48,127 +44,103 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">        
 </head>
 
-<body style="background-color:#ced4da;">
+<body>
     <!--Inicio do Navbar-->
     <header>
-        <nav class="navbar navbar-light bg-white">
-            <div class="container">
-                <a class="navbar-brand" href="#">
-                    <img src="../assets/img/LogoSemFundo.png" width="200" alt="Easytec Brasil"
-                        loading="Easytec Brasil" />
-                </a>
-            </div>
-            <ul class="nav justify-content-end">
-                <li class="nav-item relatorio">
-                    <a class="nav-link text-dark" href="../index.php" role="button" aria-expanded="false">Voltar</a>
-                </li>
-            </ul>
-        </nav>
+        <nav class="navbar">
+                <div class="container">
+                    <a class="navbar-brand" href="#">
+                        <img src="../assets/img/easytec_logo_mini_2.png" width="130" alt="Easytec Brasil" loading="Easytec Brasil" />
+                    </a>
+                    <div class="dropdown nav justify-content-end">
+                        <a class="nav-link text-white dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+                            Gerenciamento
+                        </a>
+                        <a class="nav-link text-white relatorio" href="deslogando.php" role="button" aria-expanded="false">Sair <i class="bi bi-box-arrow-right"></i></a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="../index.php">Empresas</a>
+                            <a class="dropdown-item" href="equipamentos.php">Equipamentos</a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
     </header>
     <!------------------->
     <!------------------->
     <!--Termina Navbar-->
 
-
-    <div class="container bg-white" style="margin-top: 2%; margin-bottom: 2%; border-radius:20px;">
-        <main>
+    
+    <div class="container" style="margin-top: 2%; margin-bottom: 2%; ">
+        <h3>Usuários</h3>
+        <div class="row">
             <!--inicia campo de pesquisa-->
-            <form method="post" action="#" class="" style="margin-top:2%; border-radius:8%;">
+            <form method="post" action="#" class="bg-light col-lg-6 busca-user" style="margin-left: 2%; padding:1%;">
                 <div class="col">
                     <i class="bi-search"></i>
                     <label for="buscar">Buscar</label>
-                    <input type="text" class="form-control " placeholder="Nome do Usuário" name="campo_pesquisa">
-                </div>
+                    <input type="text" class="form-control form-control-sm" placeholder="Nome do usuário, contato ou email" name="campo_pesquisa">
+                </div>    
             </form>
-            <!--termina campo de pesquisa-->
-
-            <!--Pop-UP de aviso de exclusão-->
-            <!--div id="popup" class="popup container card modal grey darken-4">
-                <div class="row">
-                    <div class="card-content white-text">
-                        <span class="card-title">Aviso e Confirmação</span>
-                        <p>Tem certeza de que realmente deseja EXCLUIR este CHIP?</p>
-                    </div>
-                    <div class="card-action">
-                        <button class="waves-effect waves-light btn">
-                            <a class="white-text" href="javascript: excluirItem();">Sim, EXCLUIR</a></button>
-                        <button class="waves-effect waves-light btn">
-                            <a class="white-text" href="javascript: fechar();">CANCELAR</a></button>
-                    </div>
-                </div>
+            <!--termina campo de pesquisa-->    
+            <div class="col-lg-2" style="padding:1%; margin-left:5%;">
+                <!--inicia botoes-->
+                <a class="btn btn-secondary px-5 mb-3" href="../index.php" style="margin: 1%">Voltar</a>
+                <a class="btn btn-secondary" href="cadastra_usuario.php" style="margin: 1%">Cadastrar Usuário</a>
+                <!--termina botoes-->
             </div>
-            <Termina Pop-UP>
-
-            <Pop-UP de aviso de exclusão>
-            <div id="popup1" class="popup container card modal grey darken-4">
-                <div class="row">
-                    <div class="card-content white-text">
-                        <span class="card-title">ITEM excluído com sucesso!</span>
-                    </div>
-                    <div class="card-action">
-                        <button class="waves-effect waves-light btn">
-                            <a class="white-text" href="javascript: fechar();">FECHAR</a></button>
-                    </div>
-                </div>
-            </div>
-            <Termina Pop-UP-->
-
-            <!--inicia botoes-->
-            <a class="btn btn-dark" href="../index.php" style="margin: 2%">Voltar</a>
-            <a class="btn btn-dark" href="cadastra_usuario.php" style="margin: 2%">Cadastrar Usuário</a>
-            <!--termina botoes-->
-    </div>
+        </div>    
+    </div>        
 
     <?php
-            echo "<div class='section  bg-white' style='margin-left: 6%; margin-right: 6%; margin-bottom: 4%; border-radius:5px;'>";
+            echo "<div class='container bg-white' style='margin-bottom: 4%; border-radius:5px;'>";
                 
             $sql = "SELECT * FROM usuarios";
             
-            /*Busca no banco o CHIP pesquisado*/
+            //Busca no campo de pesquisa por usuário, email ou contato
             if(isset($_POST["campo_pesquisa"])){
                 $valor = $_POST["campo_pesquisa"];
-                $sql = "SELECT * FROM usuarios WHERE nome LIKE '%$valor%'";
+                $sql = "SELECT * 
+                        FROM usuarios 
+                        WHERE (nome LIKE '%$valor%') OR (email LIKE '%$valor%') OR (contato LIKE '%$valor%')";
             }	
                 
             $usuarios = mysqli_query($banco, $sql);
             
             /*Inicia Tabela de CHIPS*/
-            echo "<table class='table table-striped table-hover'>";
-                echo "<tr class='thead-dark'>
+            echo "<table class='table table-striped table-hover' id='estilo-table'>";
+                echo "<tr class='thead'>
                         <th class=''>ID</th>
                         <th class=''>Nome</th>
                         <th class=''>Empresa</th>
                         <th class=''>Contato</th>
                         <th class=''>E-mail</th>
-                        <th class=''>Senha</th>
+                        <th class=''>--</th>
                         <th class=''>--</th></tr>";
 
                 while($usuario = mysqli_fetch_array($usuarios)){
                     echo "<tr><th class=''>".$usuario["id"]."</th>
-                            <td class=''><a style='color:brown;' href='edit_usuario.php?id_usuario=".$usuario["id"]."'>".$usuario["nome"]."</a></td>
+                            <td class=''>".$usuario["nome"]."</a></td>
                             <td class=''>".$usuario["empresa"]."</td>
                             <td class=''>".$usuario["contato"]."</td>
                             <td class=''>".$usuario["email"]."</td>
-                            <td class=''><input type='password' class='form-control' value='".$usuario["senha"]."' disabled/></td>
-                            <td class=''><a style='color:brown;' href='javascript: abrir();'><i class='material-icons'>delete</i></a></td></tr>";
+                            <td class=''><a href='edit_usuario.php?id_usuario=".$usuario["id"]."'><i class='material-icons'>edit</i></a></td>
+                            <td><a class='text-danger' href='usuarios.php?id_excluir =".$usuario["id"]."' data-confirm><i class='material-icons'>delete</i></a></td></tr>";
                         }	
             echo "</table>";
             echo "</div>";
             /*Termina a tabela de CHIPS*/  
-        ?>
-    </main>
-    </div>
+    ?>
 
     <!-------------------->
-    <!-------------------->
+	<!-------------------->
     <!--Inicio do footer-->
-    <footer class="text-center text-white bg-light fixed-bottom">
-        <div class="text-center p-3 text-body bg-light">
+    <footer class="text-white fixed-bottom">
+        <div class="text-center p-2">
             © 2022 Copyright Easytec Brasil
         </div>
     </footer>
     <!------------------->
-    <!-------------------->
+	<!-------------------->
     <!--Importacao do JS do Bootstrap-->
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
@@ -176,6 +148,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous">
     </script>
+    <script src="../funcoes.js"></script>
 </body>
 
 </html>

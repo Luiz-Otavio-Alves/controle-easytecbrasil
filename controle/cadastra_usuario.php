@@ -9,7 +9,7 @@
 		//echo "<h3> Acesso concedido ao banco!! </h3>";
 	}
 
-    //CADASTRA EMPRESA
+    //CADASTRA USUARIO
     if (isset($_POST["btCadastrar"])) {
         //DADOS PARA CADASTRAR
         $nome_usuario = $_POST["nome"];
@@ -56,21 +56,31 @@
         integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
 </head>
 
-<body style="background-color:#ced4da;">
+<body>
    <!--Inicio do Navbar-->
    <header>
-        <nav class="navbar navbar-light bg-white">
-            <div class="container">
-                <a class="navbar-brand" href="#">
-                    <img src="../assets/img/LogoSemFundo.png" width="200" alt="Easytec Brasil" loading="Easytec Brasil" />
-                </a>
-            </div>
-            <ul class="nav justify-content-end">
-                <li class="nav-item relatorio">
-                    <a class="nav-link text-dark" href="../index.php" role="button" aria-expanded="false">Voltar</a>
-                </li>
-            </ul>
-        </nav>
+   <nav class="navbar">
+                <div class="container">
+                    <a class="navbar-brand" href="#">
+                        <img src="../assets/img/easytec_logo_mini_2.png" width="130" alt="Easytec Brasil" loading="Easytec Brasil" />
+                    </a>
+                    <div class="dropdown nav justify-content-end">
+                        <a class="nav-link text-white dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+                            Gerenciamento
+                        </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="controle/usuarios.php">Usuários</a>
+                            <a class="dropdown-item" href="#">Empresas</a>
+                            <a class="dropdown-item" href="#">Equipamentos</a>
+                        </div>
+                    </div>
+                    <ul class="nav justify-content-end">
+                        <li class="nav-item relatorio">
+                            <a class="nav-link text-white relatorio" href="deslogando.php" role="button" aria-expanded="false">Sair <i class="bi bi-box-arrow-right"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
     </header>
 	<!------------------->
     <!------------------->
@@ -80,7 +90,7 @@
     <div class="container" style="margin-top: 2%; margin-bottom: 2%;">
     <main>
     <div class="container section row">
-        <h5>Cadastro de usuários</h5>
+        <h2>Cadastro de usuários</h2>
 
          <!--Pop-UP de aviso de exclusão-->
          <div id="popup2" class="popup2 container card modal grey darken-4">
@@ -93,11 +103,11 @@
         <!--Termina Pop-UP-->
 
         <!---inicia formulario--->
-        <form method="post" action="#" class="card bg-white col-lg-12" style="margin-top:2%; padding:4%;">
+        <form method="post" action="#" class="card col-lg-12" id="card-form" style="margin-top:2%; padding:4%;">
             <div class="row">
                 <div class="form-outline mb-4 mx-4 col">
                     <label class="form-label" for="nome">Nome Completo</label>
-                    <input type="text" class="form-control form-control-lg required" name="nome"/>
+                    <input type="text" class="form-control form-control-sm required" name="nome"/>
                 </div>
                 <div class="form-group mb-4 mx-4 col">
                     <label for="empresa">Empresa</label>
@@ -108,27 +118,29 @@
                 </div>
                 <div class="form-outline mb-4 mx-4 col">
                     <label class="form-label" for="contato">Telefone</label>
-                    <input type="text" class="form-control form-control-lg" name="contato" placeholder="exemplo: (00)0000-0000"/>
+                    <input type="text" class="form-control form-control-sm" name="contato" placeholder="exemplo: (00)0000-0000"/>
                 </div>
             </div>    
             <div class="row">
                 <div class="form-outline mb-4 mx-4 col">
                     <label class="form-label" for="email">E-mail</label>
-                    <input type="email" class="form-control form-control-lg" name="email" placeholder="exemplo@exemplo.com.br"/>
+                    <input type="email" class="form-control form-control-sm" name="email" placeholder="exemplo@exemplo.com.br"/>
                 </div>
                 <div class="form-outline mb-4 mx-4 col">
                     <label class="form-label" for="senha">Senha</label>
-                    <input type="password" class="form-control form-control-lg" name="senha"/>
+                    <input type="password" class="form-control form-control-sm" name="senha"/>
                 </div>
             </div>
 
-            <div class="row">
-                <a class="btn btn-dark btn-lg ml-4 mt-4 px-5" href="../index.php">Voltar</a>
-                <a class="mx-4 mt-4"><button class="btn btn-dark btn-lg" type="submit" name="btCadastrar" value="Cadastrar">Salvar 
+            <div class="row justify-content-center">
+                <a class="ml-4 mt-4 px-4"><button class="btn btn-dark btn-lg"  type="submit" name="btCadastrar" value="Cadastrar">Cadastrar 
                     <i class="material-icons right">add_circle_outline</i></button></a>
             </div>
         </form>
         <!---termina formulario--->
+        <div class="row justify-content-end">
+        <a class="btn btn-secondary ml-4 mt-4 px-5" href="usuarios.php">Voltar</a>
+        </div>
     </div>
 </main>
     </div>
@@ -136,8 +148,8 @@
     <!-------------------->
 	<!-------------------->
     <!--Inicio do footer-->
-    <footer class="text-center text-white bg-light fixed-bottom">
-        <div class="text-center p-3 text-body bg-light">
+    <footer class="text-white fixed-bottom">
+        <div class="text-center p-2">
             © 2022 Copyright Easytec Brasil
         </div>
     </footer>
