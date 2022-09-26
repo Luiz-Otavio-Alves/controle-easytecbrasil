@@ -1,7 +1,7 @@
 <?php
     $msg = "";
 
-    $banco = new mysqli("localhost", "root", "", "controleeasy");
+    $banco = new mysqli("localhost", "root", "Dodgef80206", "controleeasy");
 
     if ($banco->connect_errno != 0) 
     {
