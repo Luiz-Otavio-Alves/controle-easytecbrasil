@@ -31,6 +31,7 @@ body {
 
 #estilo-table{
   box-shadow: 5px 2px 20px 3px rgb(142, 142, 142);
+  font-size: 0.95rem;
 }
 
 #cab-tab{
@@ -38,11 +39,11 @@ body {
   color: white;
 }
 
-footer{
+/*footer{
   background-color: rgb(55, 61, 75);
   color: white;
   
-}
+}*/
 
 .modal{
     z-index: 100;

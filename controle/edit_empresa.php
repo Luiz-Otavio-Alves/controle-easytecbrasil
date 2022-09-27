@@ -51,7 +51,7 @@
 <body>
    <!--Inicio do Navbar-->
    <header>
-   <nav class="navbar">
+   <nav class="navbar fixed-top">
                 <div class="container">
                     <a class="navbar-brand" href="#">
                         <img src="../assets/img/easytec_logo_mini_2.png" width="130" alt="Easytec Brasil" loading="Easytec Brasil" />
@@ -69,12 +69,11 @@
                 </div>
             </nav>
     </header>
-	<!------------------->
-    <!------------------->
-    <!--Termina Navbar-->
-        
+	<!------------------>
+    <!------------------>
+    <!--Termina Navbar-->   
 
-    <div class="container" style="margin-top: 2%; margin-bottom: 2%;">
+    <div class="container" style="margin-top: 6%; margin-bottom: 2%;">
         <div class="container section row">
         <h5><?php echo $empresas['nome_emp']; ?></h5>
 
@@ -170,7 +169,6 @@
 
             <div class="row justify-content-end">
                 <a class="btn btn-secondary mb-4 ml-4 mt-4 px-5" href="../index.php">Voltar</a>
-                <a href='' class="justify-content-right"><button class="btn btn-danger ml-4 mt-4 px-3">Excluir</button></a>  
             </div>
         </div>
     </div>
@@ -178,7 +176,7 @@
     <!-------------------->
 	<!-------------------->
     <!--Inicio do footer-->
-    <footer class="text-white fixed-bottom">
+    <footer class="text-secondary">
         <div class="text-center p-2">
             © 2022 Copyright Easytec Brasil
         </div>

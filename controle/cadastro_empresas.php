@@ -67,7 +67,7 @@
 <body>
    <!--Inicio do Navbar-->
    <header>
-   <nav class="navbar">
+   <nav class="navbar fixed-top">
                 <div class="container">
                     <a class="navbar-brand" href="#">
                         <img src="../assets/img/easytec_logo_mini_2.png" width="130" alt="Easytec Brasil" loading="Easytec Brasil" />
@@ -90,7 +90,7 @@
     <!--Termina Navbar-->
         
 
-    <div class="container" style="margin-top: 2%; margin-bottom: 2%;">
+    <div class="container" style="margin-top: 6%; margin-bottom: 2%;">
         <div class="container section row">
         <h5>Cadastro de empresas</h5>
 
@@ -183,7 +183,7 @@
     <!-------------------->
 	<!-------------------->
     <!--Inicio do footer-->
-    <footer class="text-white fixed-bottom">
+    <footer class="text-secondary">
         <div class="text-center p-2">
             © 2022 Copyright Easytec Brasil
         </div>

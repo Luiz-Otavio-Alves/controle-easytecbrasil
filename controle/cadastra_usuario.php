@@ -133,7 +133,7 @@
             </div>
 
             <div class="row justify-content-center">
-                <a class="ml-4 mt-4 px-4"><button class="btn btn-dark btn-lg"  type="submit" name="btCadastrar" value="Cadastrar">Cadastrar 
+                <a class="ml-4 mt-4 px-4"><button class="btn btn-dark btn-lg" type="submit" name="btCadastrar" value="Cadastrar">Cadastrar 
                     <i class="material-icons right">add_circle_outline</i></button></a>
             </div>
         </form>
@@ -148,7 +148,7 @@
     <!-------------------->
 	<!-------------------->
     <!--Inicio do footer-->
-    <footer class="text-white fixed-bottom">
+    <footer class="text-dark fixed-bottom">
         <div class="text-center p-2">
             © 2022 Copyright Easytec Brasil
         </div>

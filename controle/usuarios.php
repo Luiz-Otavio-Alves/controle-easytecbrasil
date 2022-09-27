@@ -9,7 +9,8 @@
 	}
 
     //Exclui usuario cadastrado
-    if(isset($_GET["id_excluir"])){
+    if(isset($_REQUEST["id_excluir"])){
+        $var_cod_int = $_REQUEST["id_excluir"];
         $sql2 = "DELETE FROM usuarios WHERE id = $var_cod_int";
         mysqli_query($banco, $sql2);
     }
@@ -84,8 +85,8 @@
             <!--termina campo de pesquisa-->    
             <div class="col-lg-2" style="padding:1%; margin-left:5%;">
                 <!--inicia botoes-->
-                <a class="btn btn-secondary px-5 mb-3" href="../index.php" style="margin: 1%">Voltar</a>
-                <a class="btn btn-secondary" href="cadastra_usuario.php" style="margin: 1%">Cadastrar Usuário</a>
+                <a class="btn btn-secondary bg-success mb-3" href="cadastra_usuario.php" style="margin: 1%">Cadastrar Usuário</a>
+                <a class="btn btn-secondary px-5 mb-2" href="../index.php" style="margin: 1%">Voltar</a>
                 <!--termina botoes-->
             </div>
         </div>    
@@ -124,17 +125,18 @@
                             <td class=''>".$usuario["contato"]."</td>
                             <td class=''>".$usuario["email"]."</td>
                             <td class=''><a href='edit_usuario.php?id_usuario=".$usuario["id"]."'><i class='material-icons'>edit</i></a></td>
-                            <td><a class='text-danger' href='usuarios.php?id_excluir =".$usuario["id"]."' data-confirm><i class='material-icons'>delete</i></a></td></tr>";
+                            <td><a data-confirm='Tem certeza que deseja excluir este usuário?' class='text-danger' 
+                            href='usuarios.php?id_excluir=".$usuario["id"]."'><i class='material-icons'>delete</i></a></td></tr>";
                         }	
             echo "</table>";
             echo "</div>";
-            /*Termina a tabela de CHIPS*/  
+            /*Termina a tabela de USUARIOS*/  
     ?>
 
     <!-------------------->
 	<!-------------------->
     <!--Inicio do footer-->
-    <footer class="text-white fixed-bottom">
+    <footer class="text-dark fixed-bottom">
         <div class="text-center p-2">
             © 2022 Copyright Easytec Brasil
         </div>

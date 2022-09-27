@@ -9,6 +9,13 @@
 		//echo "<h3> Acesso concedido ao banco!! </h3>";
 	}
 
+    //Exclui empresa cadastrada
+    if(isset($_REQUEST["id_excluir"])){
+        $var_cod_int = $_REQUEST["id_excluir"];
+        $sql = "DELETE FROM empresas WHERE id_empresas = $var_cod_int";
+        mysqli_query($banco, $sql);
+    }
+
     //CONFIRMA SESSÃO PARA AUTORIZAR ACESSO A PAGINA
     session_start();
     if (!isset($_SESSION["email"],$_SESSION["senha"])){ // aqui péga o valor do nome do campo da pagina de login
@@ -43,7 +50,7 @@
 <body>
     <!--Inicio do Navbar-->
     <header>
-        <nav class="navbar">
+        <nav class="navbar fixed-top">
                 <div class="container">
                     <a class="navbar-brand" href="#">
                         <img src="assets/img/easytec_logo_mini_2.png" width="130" alt="Easytec Brasil" loading="Easytec Brasil" />
@@ -68,7 +75,7 @@
     <!--Termina Navbar-->
 
     
-    <div class="container" style="margin-top: 2%; margin-bottom: 2%; ">
+    <div class="container" style="margin-top: 5%; margin-bottom: 2%; ">
         <br>
         <div class="row">
             
@@ -83,14 +90,14 @@
             <!--termina campo de pesquisa-->    
             <div class="col-lg-4" style="padding-bottom: 6%; margin-left:5%;">
                 <!--inicia botoes-->
-                <a class="btn btn-secondary" href="controle/cadastro_empresas.php" style="margin: 1%;">Cadastrar <i class="bi bi-plus-square"></i></a>
+                <a class="btn btn-success btn-lg ml-4 px-4" href="controle/cadastro_empresas.php" style="margin: 1%;">Cadastrar <i class="bi bi-plus-circle"></i></a>
                 <!--termina botoes-->
             </div>
         </div>    
     </div>        
 
     <?php
-            echo "<div class='section bg-white' style='margin-left: 4%; margin-right: 4%; margin-bottom: 2%;'>";
+            echo "<div class='section bg-white' style='margin-top: 1%; margin-left: 4%; margin-right: 4%; margin-bottom: 2%;'>";
                 
             $sql = "SELECT * FROM empresas";
             
@@ -122,22 +129,23 @@
                             <td class=''><a class='cor-link' href='controle/edit_empresa.php?id_empresa=".$empresa["id_empresas"]."'>".$empresa["nome_emp"]."</a></td>
                             <td class=''>".$empresa["cnpj"]."</td>
                             <td class=''>".$empresa["tipo_servico"]."</td>
-                            <td class=''><a class='cor-link' href='https://".$empresa["ip_pabx"]."'>".$empresa["ip_pabx"]."</a></td>
+                            <td class=''><a class='text-danger' href='https://".$empresa["ip_pabx"]."'>".$empresa["ip_pabx"]."</a></td>
                             <td class=''>".$empresa["responsavel"]."</td>
                             <td class=''>".$empresa["tel_responsavel"]."</td>
                             <td class=''>".$empresa["cidade_emp"]."</td>
                             <td class=''>".$empresa["estado_emp"]."</td>
-                            <td class=''><a class='cor-link' href=''><i class='material-icons'>delete</i></a></td></tr>";
+                            <td class=''><a class='text-danger' data-confirm='Tem certeza que deseja excluir esta empresa?' 
+                                    href='index.php?id_excluir=".$empresa["id_empresas"]."'><i class='material-icons'>delete</i></a></td></tr>";
                         }	
             echo "</table>";
             echo "</div>";
-            /*Termina a tabela de CHIPS*/  
+            /*Termina a tabela de EMPRESAS*/  
     ?>
 
     <!-------------------->
 	<!-------------------->
     <!--Inicio do footer-->
-    <footer class="text-white fixed-bottom">
+    <footer class="text-secondary">
         <div class="text-center p-2">
             © 2022 Copyright Easytec Brasil
         </div>
@@ -150,6 +158,23 @@
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous">
+    </script>
+    <script>
+        //Alerta sobre exclusão de usuários
+        $(document).ready(function(){
+            $('a[data-confirm]').click(function(ev){
+                var href = $(this).attr('href');
+
+                if(!$('#confirm-delete').lenght){
+                    $('body').append('<div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog"aria-labelledby="exampleModalCenterTitle" aria-hidden="true"><div class="modal-dialog modal-dialog-centered" role="document"><div class="modal-content"><div class="modal-header bg-danger text-white"><h5 class="modal-title">Remoção de empresa</h5><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="modal-body">Tem certeza de que deseja <strong>excluir</strong> esta empresa?</div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button><a class="btn btn-danger text-white" id="dataConfirmOKD">Excluir</a></div></div></div></div>');
+                }
+
+                $('#dataConfirmOKD').attr('href', href);
+                $('#confirm-delete').modal({shown:true});
+
+                return false;
+            });
+        });
     </script>
 </body>
 
