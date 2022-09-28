@@ -2,7 +2,7 @@
 	session_start();
 
 	$conn = new mysqli("localhost", "root", "Dodgef80206", "controleeasy");
-	$sql = "SELECT * FROM usuarios WHERE email ='" .$_POST['email']."' and senha='".$_POST['senha']."'";
+	$sql = "SELECT * FROM usuarios WHERE email ='" .$_POST['email']."' and senha='".md5($_POST['senha'])."'";
 
 	$result = $conn->query($sql);
 

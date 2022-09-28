@@ -4,7 +4,7 @@
 	$password = "Dodgef80206";
 	$database = "controleeasy";
 	
-	$conexao = mysqli_connect($hostname, $user, $password, $database);
+	$conn = mysqli_connect($hostname, $user, $password, $database);
 	
 
     if ($conexao->connect_errno != 0) {
@@ -14,7 +14,4 @@
 		//O codigo "0" indica que conseguiu conectar no banco
 	}
     
-    /*if(!$conexao){
-		echo "Falha na conexao com o Banco de Dados!";
-	}*/
 ?>

@@ -90,7 +90,7 @@
             <!--termina campo de pesquisa-->    
             <div class="col-lg-4" style="padding-bottom: 6%; margin-left:5%;">
                 <!--inicia botoes-->
-                <a class="btn btn-success btn-lg ml-4 px-4" href="controle/cadastro_empresas.php" style="margin: 1%;">Cadastrar <i class="bi bi-plus-circle"></i></a>
+                <a class="btn btn-success btn-lg ml-4 px-3" href="controle/cadastro_empresas.php" style="margin: 1%;">Cadastrar <i class="bi bi-plus-circle"></i></a>
                 <!--termina botoes-->
             </div>
         </div>    
@@ -113,7 +113,7 @@
             /*Inicia Tabela de CHIPS*/
             echo "<table class='table table-striped table-hover table-bordered' id='estilo-table'>";
                 echo "<tr class='thead'>
-                        <th class=''>ID</th>
+                        <th class=''>#</th>
                         <th class=''>Descrição</th>
                         <th class=''>CNPJ</th>
                         <th class=''>Serviço</th>
@@ -122,11 +122,11 @@
                         <th class=''>Contato</th>
                         <th class=''>Cidade</th>
                         <th class=''>UF</th>
-                        <th class=''>--</th></tr>";
+                        <th class=''></th></tr>";
 
                 while($empresa = mysqli_fetch_array($empresas)){
                     echo "<tr><th class=''>".$empresa["id_empresas"]."</th>
-                            <td class=''><a class='cor-link' href='controle/edit_empresa.php?id_empresa=".$empresa["id_empresas"]."'>".$empresa["nome_emp"]."</a></td>
+                            <td class=''>".$empresa["nome_emp"]."</td>
                             <td class=''>".$empresa["cnpj"]."</td>
                             <td class=''>".$empresa["tipo_servico"]."</td>
                             <td class=''><a class='text-danger' href='https://".$empresa["ip_pabx"]."'>".$empresa["ip_pabx"]."</a></td>
@@ -134,8 +134,10 @@
                             <td class=''>".$empresa["tel_responsavel"]."</td>
                             <td class=''>".$empresa["cidade_emp"]."</td>
                             <td class=''>".$empresa["estado_emp"]."</td>
-                            <td class=''><a class='text-danger' data-confirm='Tem certeza que deseja excluir esta empresa?' 
-                                    href='index.php?id_excluir=".$empresa["id_empresas"]."'><i class='material-icons'>delete</i></a></td></tr>";
+                            <td class=''><a class='text-secondary px-2' href=''><i class='bi-eye-fill'></i></a>
+                                    <a class='text-dark' href='controle/edit_empresa.php?id_empresa=".$empresa["id_empresas"]."'><i class='bi-pencil-square'></i></a>
+                                    <a class='text-danger px-3' data-confirm='Tem certeza que deseja excluir esta empresa?' 
+                                    href='index.php?id_excluir=".$empresa["id_empresas"]."'><i class='bi-trash-fill'></i></a></td></tr>";
                         }	
             echo "</table>";
             echo "</div>";
