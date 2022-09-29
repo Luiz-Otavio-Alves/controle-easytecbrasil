@@ -1,10 +1,12 @@
 <?php 
-    //Confirma sessão para autorizar acesso à página    
+    // Inicia sessão no navegador
     session_start();
-    
+
+    // Confere se tem sessão deste usuário e senha ativa
+    // para dar acesso à página, caso contrário redireciona para ../login.php
     if (!isset($_SESSION["email"],$_SESSION["senha"])){
         echo "<script>window.location='../login.php'</script>";
-    } 
+    }
 ?>
 
 <!DOCTYPE html>

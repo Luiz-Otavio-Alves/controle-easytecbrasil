@@ -27,6 +27,7 @@ body {
 #card-form{
   background-color: rgb(255, 255, 255);
   box-shadow: 5px 2px 20px 3px rgb(142, 142, 142);
+  margin-top:2%; padding:4%;
 }
 
 #estilo-table{

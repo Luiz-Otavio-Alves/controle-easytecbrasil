@@ -23,7 +23,7 @@
 		if ((isset($_POST['salvar_chave'])) && ($_POST['salvar_chave']==1)) {
 			//setcookie define um cookie - o tempo é definido em segundos
 			setcookie("id_u", $_POST['email'] , time()+(60*60*24*365));
-			setcookie("senha_u", $_POST['senha'], time()+(60*60*24*365));
+			setcookie("senha_u", md5($_POST['senha']), time()+(60*60*24*365));
 		} else {
 			echo("teste");
 			setcookie ("id_u", "", time() - 3600);

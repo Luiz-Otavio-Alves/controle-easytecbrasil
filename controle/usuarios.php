@@ -1,14 +1,16 @@
 <?php 
     include_once("conexao.php");
 
-    //Confirma sessão para autorizar acesso à página    
+    // Inicia sessão no navegador
     session_start();
-    
+
+    // Confere se tem sessão deste usuário e senha ativa
+    // para dar acesso à página, caso contrário redireciona para ../login.php
     if (!isset($_SESSION["email"],$_SESSION["senha"])){
         echo "<script>window.location='../login.php'</script>";
-    } 
+    }
 
-    //Exclui usuario cadastrado
+    // Exclui usuario cadastrado
     if(isset($_REQUEST["id_excluir"])){
         $var_cod_int = $_REQUEST["id_excluir"];
         $sql2 = "DELETE FROM usuarios WHERE id = $var_cod_int";
@@ -23,7 +25,6 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
         <title>Easytec Brasil | Usuários</title>
-        <link rel="shortcut icon" href="img/logo.png" />
         <!--Import Google Icon Font-->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -97,7 +98,7 @@
                     
             $usuarios = mysqli_query($conn, $sql);
                 
-                //Tabela de usuários
+                // Tabela de usuários
                 echo "<table class='table table-striped table-hover' id='estilo-table'>";
                 echo "<tr class='thead'>
                         <th class=''>#</th>
