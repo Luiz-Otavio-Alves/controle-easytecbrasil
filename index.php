@@ -81,10 +81,10 @@
             <!--termina campo de pesquisa-->
             <div class="col-lg-5" style="padding-bottom: 6%; margin-left:5%;">
                 <!--inicia botoes-->
-                <a class="btn btn-success btn-lg ml-4 px-3" href="controle/cadastro_empresas.php"
+                <a class="btn btn-outline-success btn-lg ml-4 px-3" href="controle/cadastro_empresas.php"
                     style="margin: 1%;">Cadastrar <i class="bi bi-plus-circle"></i></a>
                 <!--termina botoes-->
-                <label for="cnpj" style="margin:2%;"><i class="bi-person-fill"></i> <b class="text-warning"><?php echo $_SESSION['nome'];?></b></label>
+                <label for="cnpj" style="margin:2%;"><i class="bi-person-fill"></i> <b class="text-dark"><?php echo $_SESSION['nome'];?></b></label>
             </div>
         </div>
     </div>
@@ -131,77 +131,133 @@
                                 <a class='text-danger px-3' data-confirm='Tem certeza que deseja excluir esta empresa?' 
                                     href='index.php?id_excluir=".$empresa["id_empresas"]."'><i class='bi-trash-fill'></i></a></td></tr>";                                            
                 
-                echo '<div class="modal" id="myModal'.$empresa['id_empresas'].'" tabindex="-1" 
-                        aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-xl">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">'.$empresa['nome_emp'].'</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
+                echo '<div class="modal fade" id="myModal'.$empresa['id_empresas'].'" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-scrollable modal-xl">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">'.$empresa['nome_emp'].'</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+
+                                <ul class="nav nav-tabs" id="myTab'.$empresa["id_empresas"].'" role="tablist">
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link active" id="home-tab" data-toggle="tab" data-target="#home'.$empresa["id_empresas"].'" type="button" role="tab" aria-controls="home" aria-selected="true">Administrativo</button>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link" id="profile-tab" data-toggle="tab" data-target="#profile'.$empresa["id_empresas"].'" type="button" role="tab" aria-controls="profile" aria-selected="false">Técnico</button>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link" id="contact-tab" data-toggle="tab" data-target="#contact'.$empresa["id_empresas"].'" type="button" role="tab" aria-controls="contact" aria-selected="false">Equipamentos</button>
+                                    </li>
+                                </ul>
+                                <div class="tab-content" id="myTabContent">
+                                    <div class="tab-pane fade show active" id="home'.$empresa["id_empresas"].'" role="tabpanel" aria-labelledby="home-tab">
+                                        <!-----Administrativo------------------------------------------>
+                                        <div class="row" style="margin-top:3%;">
+                                            <div class="form-outline mb-4 mx-4 col-5">
+                                                <label for="descricao"><b>Empresa: </b></label>
+                                                '.$empresa['nome_emp'].'
+                                            </div>
+                                            <div class="form-outline mb-4 mx-4 col-3">
+                                                <label for="cnpj"><b>CNPJ: </b></label>
+                                                '.$empresa['cnpj'].'
+                                            </div>
+                                            <div class="form-outline mb-4 mx-4 col">
+                                                <label class="form-label" for="telefone"><b>Telefone: </b></label>
+                                                '.$empresa['tel_responsavel'].'
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-outline mb-4 mx-4 col-5">
+                                                <label for="endereco"><b>Endereço: </b></label>
+                                                '.$empresa['endereco_emp'].'
+                                            </div>
+                                            <div class="form-outline mb-4 mx-4 col-3">
+                                                <label for="cidade"><b>Cidade: </b></label>
+                                                '.$empresa['cidade_emp'].'
+                                            </div>
+                                            <div class="form-outline mb-4 mx-4 col-2">
+                                                <label for="estado"><b>Estado: </b></label>
+                                                '.$empresa['estado_emp'].'
+                                            </div>
+                                        </div> 
+                                        <div class="row">
+                                            <div class="form-outline mb-4 mx-4 col-5">
+                                                <label class="form-label" for="responsavel"><b>Resposável/TI: </b></label>
+                                                '.$empresa['responsavel'].'
+                                            </div>
+                                            <div class="form-outline mb-4 mx-4 col-5">
+                                                <label class="form-label" for="email"><b>Email: </b></label>
+                                                '.$empresa['mail_responsavel'].'
+                                            </div>
+                                        </div> 
+                                        <div class="row">
+                                            <div class="form-outline mb-4 mx-4 col">
+                                                <label class="form-label" for="anot"><b>Anotações</b></label><br>
+                                                <textarea type="text" class="form-control" disabled>'.$empresa['anot_emp'].'</textarea>
+                                            </div>
+                                        </div> 
+                                        <!----------------------------------------------------------->
+                                    </div>
+                                    <div class="tab-pane fade" id="profile'.$empresa["id_empresas"].'" role="tabpanel" aria-labelledby="profile-tab">
+                                        <!--------------Tecnico-------------------------------------->
+                                        
+                                            <div class="row" style="margin-top:3%;">
+                                                <div class="form-outline mb-4 mx-3 col-4">
+                                                    <label for="codigo"><b>Código de ligação: </b></label>
+                                                    '.$empresa['cod_ligacao'].'
+                                                </div>    
+                                                <div class="form-outline mb-4 mx-3 col-4">
+                                                    <label for="servico"><b>Tipo de Serviço: </b></label>
+                                                    '.$empresa['tipo_servico'].'
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-outline mb-4 mx-3 col-4">
+                                                    <label class="form-label" for="ip"><b>IP do PABX: </b></label>
+                                                    <a class="text-secondary" target="_blank" href="https://'.$empresa['ip_pabx'].'">'.$empresa['ip_pabx'].'</a>
+                                                </div>
+                                                <div class="form-outline mb-4 mx-3 col-4">
+                                                    <label class="form-label" for="ip"><b>Senha do PABX: </b></label>
+                                                     '.$empresa['password_pabx'].'
+                                                </div>
+                                            </div> 
+                                            <div class="row">
+                                                <div class="form-outline mb-4 mx-3 col-4">
+                                                    <label class="form-label" for="ip_mikrotik"><b>IP do Mikrotik: </b></label>
+                                                    '.$empresa['ip_mikrotik'].'
+                                                </div>
+                                                <div class="form-outline mb-4 mx-3 col-4">
+                                                    <label class="form-label" for="password_mikrotik"><b>Senha do Mikrotik: </b></label>
+                                                    '.$empresa['password_mikrotik'].'
+                                                </div>
+                                            </div>   
+                                            <div class="row">
+                                                <div class="form-outline mb-4 mx-3 col-4">
+                                                    <label class="form-label" for="num_entrada"><b>Número(s) de entrada: </b></label>
+                                                    '.$empresa['num_entrada'].'
+                                                </div>
+                                                <div class="form-outline mb-4 mx-3 col-3">
+                                                    <label class="form-label" for="num_saida"><b>Número(s) de saída: </b></label>
+                                                    '.$empresa['num_saida'].'
+                                                </div>
+                                                <div class="form-outline mb-4 mx-3 col-2">
+                                                    <a class="btn btn-warning text-dark" href="controle/edit_empresa.php?id_empresa='.$empresa['id_empresas'].'">
+                                                    Editar <i class="bi-pencil-square"></i></a>
+                                                </div>
+                                            </div>   
+                                        <!----------------------------------------------------------->
+                                    </div>
+                                    <div class="tab-pane fade" id="contact'.$empresa["id_empresas"].'" role="tabpanel" aria-labelledby="contact-tab">
+                                        TESTE 3
+                                    </div>
                                 </div>
-                                <div class="modal-body">
-                                    <div class="row">
-                                        <div class="form-outline mb-4 mx-4 col-5">
-                                            <label for="descricao"><b>Empresa: </b></label>
-                                            '.$empresa['nome_emp'].'
-                                        </div>
-                                        <div class="form-outline col-3">
-                                            <label for="cnpj"><b>CNPJ: </b></label>
-                                            '.$empresa['cnpj'].'
-                                        </div>
-                                        <div class="form-outline col-3">
-                                            <label for="servico"><b>Tipo de Serviço: </b></label>
-                                            '.$empresa['tipo_servico'].'
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="form-outline mb-4 mx-4 col-5">
-                                            <label for="endereco"><b>Endereço: </b></label>
-                                            '.$empresa['endereco_emp'].'
-                                        </div>
-                                        <div class="form-outline mb-4 mx-4 col-3">
-                                            <label for="cidade"><b>Cidade: </b></label>
-                                            '.$empresa['cidade_emp'].'
-                                        </div>
-                                        <div class="form-outline mb-4 mx-4 col-2">
-                                            <label for="estado"><b>Estado: </b></label>
-                                            '.$empresa['estado_emp'].'
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="form-outline mb-4 mx-4 col">
-                                            <label class="form-label" for="responsavel"><b>Resposável/TI: </b></label>
-                                            '.$empresa['responsavel'].'
-                                        </div>
-                                        <div class="form-outline mb43 mx-4 col">
-                                            <label class="form-label" for="email"><b>Email: </b></label>
-                                            '.$empresa['mail_responsavel'].'
-                                        </div>
-                                        <div class="form-outline mb-2 mx-2 col">
-                                            <label class="form-label" for="telefone"><b>Telefone: </b></label>
-                                            '.$empresa['tel_responsavel'].'
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="form-outline mb-4 mx-4 col-4">
-                                            <label class="form-label" for="ip"><b>IP do PABX: </b></label>
-                                            <a class="text-secondary" target="_blank" href="https://'.$empresa['ip_pabx'].'">'.$empresa['ip_pabx'].'</a>
-                                        </div>
-                                        <div class="form-outline mb-4 mx-4 col-4">
-                                            <a class="btn btn-warning mb-4 ml-4 mt-4 px-5" href="equipamentos.php">Equipamentos</a>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="form-outline mb-4 mx-4 col">
-                                            <label class="form-label" for="senha"><b>Anotações</b></label><br>
-                                            '.$empresa['anot_emp'].'
-                                        </div>
-                                    </div>
-
-                                </div>    
+                            
+                            </div>    
+                            
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
                             </div>

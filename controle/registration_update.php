@@ -55,10 +55,18 @@
                     $mail_responsavel = $_POST["mail_responsavel"];
                     $tel_responsavel = $_POST["tel_responsavel"];
                     $ip_pabx = $_POST["ip_pabx"];
+                    $pass_pabx = $_POST["password_pabx"];
+                    $ip_mikrotik = $_POST["ip_mikrotik"];
+                    $pass_mikrotik = $_POST["password_mikrotik"];
+                    $cod_ligacao = $_POST["cod_ligacao"];
+                    $num_entrada = $_POST["num_entrada"];
+                    $num_saida = $_POST["num_saida"];
                     $anot_emp = $_POST["anot_emp"];
 
-                    $sqlCadastraEmpresa = "INSERT INTO empresas VALUES (null, '$nome_emp', '$cnpj', '$tipo_servico', '$endereco_emp', '$cidade_emp',
-                                                    '$estado_emp', '$responsavel', '$mail_responsavel', '$tel_responsavel', '$ip_pabx', '$anot_emp')";
+                    $sqlCadastraEmpresa = "INSERT INTO empresas VALUES (null, '$nome_emp', '$cnpj', '$tipo_servico', 
+                                            '$endereco_emp', '$cidade_emp', '$estado_emp', '$responsavel', '$mail_responsavel', 
+                                            '$tel_responsavel', '$ip_pabx', '$pass_pabx', '$ip_mikrotik', '$pass_mikrotik', 
+                                            '$cod_ligacao', '$num_entrada', '$num_saida', '$anot_emp')";
 
                     $result_sql = mysqli_query($conn, $sqlCadastraEmpresa);
 
@@ -132,6 +140,12 @@
                     $mail_responsavel = $_POST["mail_responsavel"];
                     $tel_responsavel = $_POST["tel_responsavel"];
                     $ip_pabx = $_POST["ip_pabx"];
+                    $pass_pabx = $_POST["password_pabx"];
+                    $ip_mikrotik = $_POST["ip_mikrotik"];
+                    $pass_mikrotik = $_POST["password_mikrotik"];
+                    $cod_ligacao = $_POST["cod_ligacao"];
+                    $num_entrada = $_POST["num_entrada"];
+                    $num_saida = $_POST["num_saida"];
                     $anot_emp = $_POST["anot_emp"];
 
                     $sqlAtualizaEmpresa = "UPDATE empresas SET nome_emp = '$nome_emp', 
@@ -144,6 +158,12 @@
                                                     mail_responsavel = '$mail_responsavel',
                                                     tel_responsavel = '$tel_responsavel',
                                                     ip_pabx = '$ip_pabx',
+                                                    password_pabx = '$pass_pabx',
+                                                    ip_mikrotik = '$ip_mikrotik',
+                                                    password_mikrotik = '$pass_mikrotik',
+                                                    cod_ligacao = '$cod_ligacao',
+                                                    num_entrada = '$num_entrada',
+                                                    num_saida = '$num_saida',
                                                     anot_emp = '$anot_emp'
                                 WHERE id_empresas = $var_cod_int";
                     $result_sqlAtualiza = mysqli_query($conn, $sqlAtualizaEmpresa);

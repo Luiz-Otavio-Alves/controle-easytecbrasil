@@ -44,7 +44,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
         integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
     <!--Importacao de icones do bootstrap-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 </head>
 
 <body>
@@ -77,41 +77,38 @@
             <h5><?php echo $empresas['nome_emp']; ?></h5>
 
             <!---inicia formulario--->
-            <form method="post" action="registration_update.php?id_edita_empresa=<?php echo $var_cod_int; ?>" 
-                    class="card col-12" id="card-form" style="margin-top:2%; padding:4%;">
-                <div class="row">
+            <form method="post" action="registration_update.php?id_edita_empresa=<?php echo $var_cod_int; ?>"
+                class="card col-12" id="card-form" style="margin-top:2%; padding:4%;">
+                <h6 class="row justify-content-center text-secondary">Informações Administrativas</h6>
+                <div class="row" style=" margin-top:1%;">
                     <div class="form-outline mb-4 mx-4 col-5">
                         <label class="form-label" for="descricao">Descrição</label>
                         <input type="text" class="form-control form-control-sm required" name="nome_emp"
                             value="<?php echo $empresas['nome_emp']; ?>" />
                     </div>
-                    <div class="form-group mb-4 mx-2 col-2">
+                    <div class="form-group mb-4 mx-3 col-3">
                         <label for="cnpj">CNPJ</label>
                         <input type="text" class="form-control form-control-sm required" name="cnpj"
                             value="<?php echo $empresas['cnpj']; ?>" />
                     </div>
-                    <div class="form-group mb-4 mx-4 col-3">
-                        <label for="cnpj">Tipo de Serviço</label>
-                        <select class="form-control" name="tipo_servico" id="empresa">
-                            <option><?php echo $empresas['tipo_servico']; ?></option>
-                            <option>Virtual Dedicado</option>
-                            <option>Virtual Compartilhado</option>
-                            <option>Fisico Dedicado</option>
-                        </select>
+                    <div class="form-outline mb-3 mx-3 col-2">
+                        <label class="form-label" for="telefone">Telefone</label>
+                        <input type="text" class="form-control form-control-sm" name="tel_responsavel"
+                            value="<?php echo $empresas['tel_responsavel']; ?>" />
                     </div>
                 </div>
                 <div class="row">
-                    <div class="form-outline mb-4 mx-4 col-5">
+                    <div class="form-outline mb-3 mx-4 col-5">
                         <label class="form-label" for="endereco">Endereço</label>
                         <input type="text" class="form-control form-control-sm" name="endereco_emp"
                             placeholder="Rua/N°, Bairro" value="<?php echo $empresas['endereco_emp']; ?>" />
                     </div>
-                    <div class="form-outline mb-4 mx-2 col-3">
+                    <div class="form-outline mb-3 mx-3 col-3">
                         <label class="form-label" for="cidade">Cidade</label>
                         <input type="text" class="form-control form-control-sm" name="cidade_emp"
                             value="<?php echo $empresas['cidade_emp']; ?>" />
                     </div>
-                    <div class="form-outline mb-4 mx-4 col-2">
+                    <div class="form-outline mb-3 mx-3 col-2">
                         <label class="form-label" for="estado">Estado</label>
                         <select class="form-control" name="estado_emp" id="empresa">
                             <option><?php echo $empresas['estado_emp']; ?></option>
@@ -123,30 +120,79 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="form-outline mb-4 mx-4 col">
+                    <div class="form-outline mb-3 mx-4 col-4">
                         <label class="form-label" for="responsavel">Responsável</label>
                         <input type="text" class="form-control form-control-sm" name="responsavel" placeholder="TI"
                             value="<?php echo $empresas['responsavel']; ?>" />
                     </div>
-                    <div class="form-outline mb-4 mx-4 col">
+                    <div class="form-outline mb-3 mx-3 col-4">
                         <label class="form-label" for="email">E-mail</label>
                         <input type="email" class="form-control form-control-sm" name="mail_responsavel"
                             placeholder="exemplo@exemplo.com.br" value="<?php echo $empresas['mail_responsavel']; ?>" />
                     </div>
-                    <div class="form-outline mb-4 mx-4 col">
-                        <label class="form-label" for="telefone">Telefone</label>
-                        <input type="text" class="form-control form-control-sm" name="tel_responsavel"
-                            placeholder="(XX)XXXXX-XXXX" value="<?php echo $empresas['tel_responsavel']; ?>" />
+                    <div class="form-outline mb-3 mx-3 col-2">
+                        <a class="btn btn-warning  mb-4 mt-4 px-4" href="equipamentos.php">Equipamentos</a>
                     </div>
                 </div>
+                <hr>
+                <h6 class="row justify-content-center text-secondary">Informações Técnicas</h6>
                 <div class="row">
-                    <div class="form-outline mb-4 mx-4 col-4">
-                        <label class="form-label" for="ip">IP Pabx</label>
-                        <input type="text" class="form-control form-control-sm" name="ip_pabx"
-                            value="<?php echo $empresas['ip_pabx']; ?>" />
+                    <div class="col-5 mx-4" style="margin-top:1%;">
+                        <div class="row">
+                            <div class="form-group col-8 mb-3">
+                                <label for="cnpj">Tipo de Serviço</label>
+                                <select class="form-control" name="tipo_servico" id="empresa">
+                                    <option><?php echo $empresas['tipo_servico']; ?></option>
+                                    <option>Virtual Dedicado</option>
+                                    <option>Virtual Compartilhado</option>
+                                    <option>Fisico Dedicado</option>
+                                </select>
+                            </div>
+                            <div class="form-outline col-4 mb-3">
+                                <label class="form-label" for="codigo">Código</label>
+                                <input type="text" class="form-control form-control-sm" name="cod_ligacao"
+                                    value="<?php echo $empresas['cod_ligacao']; ?>" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-outline col-6 mb-3">
+                                <label class="form-label" for="num_entrada">Número(s) de entrada</label>
+                                <textarea type="text" class="form-control form-control-sm" name="num_entrada"
+                                    placeholder="Digite um número por linha"><?php echo $empresas['num_entrada']; ?></textarea>
+                            </div>
+                            <div class="form-outline col-6 mb-3">
+                                <label class="form-label" for="num_saida">Número(s) de saída</label>
+                                <textarea type="text" class="form-control form-control-sm" name="num_saida"
+                                    placeholder="Digite um número por linha"><?php echo $empresas['num_saida']; ?></textarea>
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-outline mb-4 mx-4 col-4">
-                        <a class="btn btn-warning mb-4 ml-4 mt-4 px-5" href="equipamentos.php">Equipamentos</a>
+                    <div class="col-5 mx-3" style="margin-top:1%;">
+                        <div class="row">
+                            <div class="form-outline mb-3 col-7">
+                                <label class="form-label" for="ip">IP Pabx</label>
+                                <input type="text" class="form-control form-control-sm" name="ip_pabx"
+                                    value="<?php echo $empresas['ip_pabx']; ?>" />
+                            </div>
+                            <div class="form-outline mb-3 col-5">
+                                <label class="form-label" for="password_pabx">Senha Pabx</label>
+                                <input type="text" class="form-control form-control-sm" name="password_pabx"
+                                    value="<?php echo $empresas['password_pabx']; ?>" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-outline mb-3 col-7">
+                                <label class="form-label" for="ip_mikrotik">IP Mikrotik</label>
+                                <input type="text" class="form-control form-control-sm" name="ip_mikrotik"
+                                    value="<?php echo $empresas['ip_mikrotik']; ?>" placeholder="(opcional)" />
+                            </div>
+                            <div class="form-outline mb-3 col-5">
+                                <label class="form-label" for="pass_mikrotik">Senha Mikrotik</label>
+                                <input type="text" class="form-control form-control-sm" name="password_mikrotik"
+                                    value="<?php echo $empresas['password_mikrotik']; ?>" placeholder="(opcional)" />
+                            </div>
+                        </div>
+
                     </div>
                 </div>
                 <div class="row">
