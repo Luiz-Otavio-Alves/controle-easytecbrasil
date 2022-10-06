@@ -49,17 +49,9 @@
                     <img src="../assets/img/easytec_logo_mini_2.png" width="130" alt="Easytec Brasil"
                         loading="Easytec Brasil" />
                 </a>
-                <div class="dropdown nav justify-content-end">
-                    <a class="nav-link text-white dropdown-toggle" href="#" role="button" data-toggle="dropdown"
-                        aria-expanded="false">
-                        Gerenciamento
-                    </a>
-                    <a class="nav-link text-white relatorio" href="deslogando.php" role="button"
+                <div class="nav justify-content-end">
+                    <a class="nav-link text-white relatorio" href="../deslogando.php" role="button"
                         aria-expanded="false">Sair <i class="bi bi-box-arrow-right"></i></a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="index.php">Empresas</a>
-                        <a class="dropdown-item" href="usuarios.php">Usuários</a>
-                    </div>
                 </div>
             </div>
         </nav>
@@ -68,12 +60,9 @@
     <div class="container" style="margin-top: 6%; margin-bottom: 2%;">
         <div class="container section row">
             <h5>Cadastro de equipamentos</h5>
-
             <!---Formulario--->
-            <form method="post" action="registration_update.php?cadastra_equip_emp=<?php echo $var_cod_int; ?>" 
-                    class="card col-12" id="card-form" style="margin-top:2%; padding:4%;">
-
-
+            <form method="post" action="registration_update.php?cadastra_equip_emp=<?php echo $var_cod_int; ?>"
+                class="card col-12" id="card-form" style="margin-top:2%; padding:4%;">
                 <div class="row" style=" margin-top:1%;">
                     <div class="form-outline mb-3 mx-4 col-6">
                         <label class="form-label" for="descricao">Equipamento</label>
@@ -91,7 +80,7 @@
                                             " - ".$equipamento["descricao_equip"].
                                         "</option>";
                                 }
-                            ?>    
+                            ?>
                         </select>
                     </div>
                     <div class="form-group mb-3 mx-2 col-2">
@@ -109,23 +98,34 @@
                         <label class="form-label" for="endereco">Patrimônio</label>
                         <input type="text" class="form-control form-control-sm" name="patrimonio_equip" />
                     </div>
+                    
+                    <div class="form-outline mb-3 mx-4 col-3">
+                        <label class="form-label" for="endereco">Usuário</label>
+                        <input type="text" class="form-control form-control-sm" name="user_equip_emp"/>
+                    </div>
+                    <div class="form-outline mb-3 mx-4 col-3">
+                        <label class="form-label" for="endereco">Senha</label>
+                        <input type="text" class="form-control form-control-sm" name="pass_equip_emp"/>
+                    </div>
+                
                     <div class="form-outline mb-4 mx-4 col">
                         <label class="form-label" for="senha">Anotações do equipamento</label>
                         <textarea type="text" class="form-control" name="anotacoes_equip"
-                                    placeholder="Digite seu texto"></textarea>
+                            placeholder="Digite seu texto"></textarea>
                     </div>
                 </div>
 
                 <div class="row justify-content-center">
-                    <a class="ml-4 mt-4 px-4"><button class="btn btn-dark" type="submit" name="btCadastrarEquipamentos_emp"
-                            value="Cadastrar">Cadastrar
+                    <a class="ml-4 mt-4 px-4"><button class="btn btn-dark" type="submit"
+                            name="btCadastrarEquipamentos_emp" value="Cadastrar">Cadastrar
                             <i class="bi bi-plus-circle"></i></button></a>
                 </div>
         </div>
         </form>
         <!---Termina formulario--->
         <div class="row">
-            <a class="btn btn-secondary mb-4 ml-4 mt-4 px-5" href="edit_equipamentos_emp.php?id_empresa=<?php echo $var_cod_int; ?>">Voltar</a>
+            <a class="btn btn-secondary btn-sm mb-4 ml-4 mt-4 px-5"
+                href="edit_equipamentos_emp.php?id_empresa=<?php echo $var_cod_int; ?>">Voltar</a>
         </div>
     </div>
     </div>
@@ -143,7 +143,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous">
     </script>
-    
-</body>
 
+</body>
 </html>

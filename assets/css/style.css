@@ -2,23 +2,24 @@ body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
-  }
+}
 
-  .my-custom-scrollbar {
-    position: relative;
-    height: 100%;
-    overflow: auto;
-    }
-    .table-wrapper-scroll-y {
-    display: block;
-    }
+.my-custom-scrollbar {
+  position: relative;
+  height: 400px;
+  overflow: auto;
+}
+    
+.table-wrapper-scroll-y {
+  display: block;
+}
 
-  main {
-    flex: 1 0 auto;
-  }
+main {
+  flex: 1 0 auto;
+}
 
-  header, main, footer {
-    flex-shrink: 0;
+header, main, footer {
+  flex-shrink: 0;
 }
 
 .navbar{
@@ -59,6 +60,7 @@ body {
     z-index: 100;
     opacity: 100;
 }
+
 .popup2{
 	position: fixed;
 	top:0; bottom:0;

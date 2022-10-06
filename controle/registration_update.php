@@ -53,6 +53,8 @@
                     $ip_equip = $_POST["ip_equip"];
                     $mac_addr_equip = $_POST["mac_addr_equip"];
                     $patrimonio_equip = $_POST["patrimonio_equip"];
+                    $user_equip_emp = $_POST["user_equip_emp"];
+                    $pass_equip_emp = $_POST["pass_equi_emp"];
                     $anotacoes_equip = $_POST["anotacoes_equip"];
 
                     $rest = substr($id_equipamentos, 0, 2);
@@ -60,6 +62,7 @@
                     
                     $sqlCadastraEquipamentos_emp = "INSERT INTO equipamentos_emp VALUES (null, 
                                                     '$rest', '$id_empresas', '$ip_equip', '$mac_addr_equip',
+                                                    '$user_equip_emp', '$pass_equip_emp',
                                                     '$patrimonio_equip', '$anotacoes_equip')";
 
                     $result_sql = mysqli_query($conn, $sqlCadastraEquipamentos_emp);
@@ -117,23 +120,35 @@
 
                 /////////////////////////////////////////////////////////////////////////////////////////////////
                 //////////////////////////////////ATUALIZA EQUIPAMENTOS EMPRESA//////////////////////////////////
-                if (isset($_POST["btAtualizaEquipamentos_emp"])) {
+                if (isset($_POST["btAtualizarEquipamentos_emp"])) {
+                    $var_cod_emp = $_REQUEST["edita_equip_emp"];
+                    $var_cod_int = intval($var_cod_emp); //Passa o valor pra variável
+                    echo $var_cod_int;
+
+                    $var_cod_id_emp = $_REQUEST["pega_id_emp"];
+                    $var_cod_int_id_emp = intval($var_cod_id_emp);
+                    echo $var_cod_int_id_emp;
+
                     $id_equipamentos = $_POST["id_equipamentos"];
-                    $id_empresas = $_POST["id_empresas"];
+                    $id_empresas = $var_cod_int_id_emp;
                     $ip_equip = $_POST["ip_equip"];
                     $mac_addr_equip = $_POST["mac_addr_equip"];
                     $patrimonio_equip = $_POST["patrimonio_equip"];
+                    $user_equip_emp = $_POST["user_equip_emp"];
+                    $pass_equip_emp = $_POST["pass_equi_emp"];
                     $anotacoes_equip = $_POST["anotacoes_equip"];
 
-                    $var_cod = $_REQUEST["id_edita_equipamentos_emp"];
-                    $var_cod_int = intval($var_cod); //Passa o valor pra variável
+                    $rest = substr($id_equipamentos, 0, 2);
+                    //echo $rest;
 
-                    $sqlAtualizaEquipamentos = "UPDATE equipamentos_emp SET id_equipamentos = '$id_equipamentos', 
+                    $sqlAtualizaEquipamentos = "UPDATE equipamentos_emp SET id_equipamentos = '$rest', 
                                                                         id_empresas = '$id_empresas', 
                                                                         ip_equip = '$ip_equip', 
                                                                         mac_addr_equip = '$mac_addr_equip',
                                                                         patrimonio_equip = '$patrimonio_equip',
-                                                                        anotacoes_equip = '$anotacoes_equip',
+                                                                        user_equip_emp = '$user_equip_emp',
+                                                                        pass_equi_emp = '$pass_equip_emp',
+                                                                        anotacoes_equip = '$anotacoes_equip'
                                                     WHERE id_equipamentos_emp = $var_cod_int";
 
                     $result_sql = mysqli_query($conn, $sqlAtualizaEquipamentos);
@@ -152,7 +167,7 @@
                                         Equipamento atualizado com sucesso!
                                     </div>
                                     <div class="modal-footer">
-                                        <a href="edit_equipamentos_emp.php?id_empresa=<?php echo $var_cod_int; ?>"><button type="button" class="btn btn-secondary">Fechar</button></a>
+                                        <a href="edit_equipamentos_emp.php?id_empresa=<?php echo $var_cod_int_id_emp; ?>"><button type="button" class="btn btn-secondary">Fechar</button></a>
                                     </div>
                                 </div>
                             </div>
@@ -175,7 +190,7 @@
                                         Erro ao atualizar equipamento!
                                     </div>
                                     <div class="modal-footer">
-                                        <a href="edit_equipamentos_emp.php?id_empresa=<?php echo $var_cod_int; ?>"><button type="button" class="btn btn-secondary">Fechar</button></a>
+                                        <a href="edit_equipamentos_emp.php?id_empresa=<?php echo $var_cod_int_id_emp; ?>"><button type="button" class="btn btn-secondary">Fechar</button></a>
                                     </div>
                                 </div>
                             </div>

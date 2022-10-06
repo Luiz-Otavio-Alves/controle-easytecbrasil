@@ -91,7 +91,7 @@
 
     <?php // Trecho em PHP para mostrar a tabela com as empresas cadastradas
         echo "<div class='section bg-white' style='margin-top: 1%; margin-left: 4%; margin-right: 4%; margin-bottom: 2%;'>";
-                        
+
         $sql = "SELECT * FROM empresas";
 
         if(isset($_POST["campo_pesquisa"])){
@@ -102,8 +102,8 @@
                         
         $empresas = mysqli_query($conn, $sql);
                     
-        echo "<table class='table table-striped table-hover table-bordered table-responsive-sm' id='estilo-table'>";
-        echo "<tr class='thead'>
+        echo "<table class='table table-striped table-hover table-bordered table-responsive-sm table-sm' id='estilo-table'>";
+        echo "<tr class='thead bg-secondary text-white'>
             <th>#</th>
             <th>Descrição</th>
             <!--th class=''>CNPJ</th-->
@@ -148,10 +148,13 @@
                         <div class="modal-body">
                             <ul class="nav nav-tabs" id="myTab'.$empresa["id_empresas"].'" role="tablist">
                                 <li class="nav-item" role="presentation">
-                                            <button class="nav-link active" id="home-tab" data-toggle="tab" data-target="#home'.$empresa["id_empresas"].'" type="button" role="tab" aria-controls="home" aria-selected="true">Administrativo</button>
+                                    <button class="nav-link active" id="home-tab" data-toggle="tab" data-target="#home'.$empresa["id_empresas"].'" type="button" role="tab" aria-controls="home" aria-selected="true">Administrativo</button>
                                 </li>
                                 <li class="nav-item" role="presentation">
                                     <button class="nav-link" id="profile-tab" data-toggle="tab" data-target="#profile'.$empresa["id_empresas"].'" type="button" role="tab" aria-controls="profile" aria-selected="false">Técnico</button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="equipaments-tab" data-toggle="tab" data-target="#equipaments'.$empresa["id_empresas"].'" type="button" role="tab" aria-controls="equipaments" aria-selected="false">Equipamentos</button>
                                 </li>
                             </ul>
                             <div class="tab-content" id="myTabContent">
@@ -257,6 +260,28 @@
                                             Editar <i class="bi-pencil-square"></i></a>
                                         </div>
                                     </div>   
+                                </div>
+
+                                <!----------------------------------------------->
+                                <!------------------EQUIPAMENTOS----------------->
+                                <!----------------------------------------------->
+                                <div class="tab-pane fade" id="equipaments'.$empresa["id_empresas"].'" 
+                                    role="tabpanel" aria-labelledby="equipaments-tab">
+                                    <div class="row" style="margin-top:3%;">
+                                        <div class="form-outline mb-4 mx-4 col-2 bg-warning">
+                                            <label p-4 style="font-size: 50px;" class="text-white" for=""><b>Total </b></label>
+                                            <p style="font-size: 50px" class="text-white justify-content-center">'.$empresa["id_empresas"].'</p>
+                                        </div>
+                                        <div class="form-outline mb-4 mx-4 col-3">
+                                            <label for=""><b>TESTE </b></label>
+                                            
+                                        </div>
+                                        <div class="form-outline mb-4 mx-4 col">
+                                            <label for=""><b>TESTE </b></label>
+                                            
+                                        </div>
+                                    </div>
+                                    
                                 </div>
                                         
                                 <div class="modal-footer">

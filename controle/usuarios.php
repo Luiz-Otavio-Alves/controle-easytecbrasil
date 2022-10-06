@@ -44,7 +44,7 @@
         <header>
             <nav class="navbar">
                 <div class="container">
-                    <a class="navbar-brand" href="#">
+                    <a class="navbar-brand" href="../index.php">
                         <img src="../assets/img/easytec_logo_mini_2.png" width="130" alt="Easytec Brasil"
                             loading="Easytec Brasil" />
                     </a>
@@ -84,7 +84,7 @@
         </div>
 
         <?php
-            echo "<div class='container bg-white' style='margin-bottom: 4%; border-radius:5px;'>";
+            echo "<div class='container bg-white table-wrapper-scroll-y my-custom-scrollbar' style='margin-bottom: 4%; border-radius:5px;'>";
                     
             $sql = "SELECT * FROM usuarios";
                 
@@ -99,7 +99,7 @@
             $usuarios = mysqli_query($conn, $sql);
                 
                 // Tabela de usuários
-                echo "<table class='table table-striped table-hover table-responsive-sm' id='estilo-table'>";
+                echo "<table class='table table-striped table-hover table-responsive-sm  mb-0' id='estilo-table'>";
                 echo "<tr class='thead'>
                         <th class=''>#</th>
                         <th class=''>Nome</th>

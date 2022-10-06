@@ -40,17 +40,9 @@
                     <img src="../assets/img/easytec_logo_mini_2.png" width="130" alt="Easytec Brasil"
                         loading="Easytec Brasil" />
                 </a>
-                <div class="dropdown nav justify-content-end">
-                    <a class="nav-link text-white dropdown-toggle" href="#" role="button" data-toggle="dropdown"
-                        aria-expanded="false">
-                        Gerenciamento
-                    </a>
+                <div class="nav justify-content-end">
                     <a class="nav-link text-white relatorio" href="deslogando.php" role="button"
                         aria-expanded="false">Sair <i class="bi bi-box-arrow-right"></i></a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="index.php">Empresas</a>
-                        <a class="dropdown-item" href="usuarios.php">Usuários</a>
-                    </div>
                 </div>
             </div>
         </nav>
@@ -105,12 +97,12 @@
         </form>
         <!---Termina formulario--->
         <div class="row">
-            <a class="btn btn-secondary mb-4 ml-4 mt-4 px-5" href="equipamentos.php">Voltar</a>
+            <a class="btn btn-secondary btn-sm mb-4 ml-4 mt-4 px-5" href="equipamentos.php">Voltar</a>
         </div>
     </div>
     </div>
 
-    <footer class="text-secondary">
+    <footer class="text-secondary fixed-bottom">
         <div class="text-center p-2">
             © 2022 Copyright Easytec Brasil
         </div>
@@ -123,7 +115,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous">
     </script>
-    
+
 </body>
 
 </html>

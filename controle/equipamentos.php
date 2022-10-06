@@ -44,7 +44,7 @@
         <header>
             <nav class="navbar">
                 <div class="container">
-                    <a class="navbar-brand" href="#">
+                    <a class="navbar-brand" href="../index.php">
                         <img src="../assets/img/easytec_logo_mini_2.png" width="130" alt="Easytec Brasil"
                             loading="Easytec Brasil" />
                     </a>
@@ -84,7 +84,7 @@
         </div>
 
         <?php
-            echo "<div class='container bg-white' style='margin-bottom: 4%; border-radius:5px;'>";
+            echo "<div class='container bg-white table-wrapper-scroll-y my-custom-scrollbar' style='border-radius:5px;'>";
                     
             $sql = "SELECT * FROM equipamentos";
                 
@@ -100,7 +100,7 @@
             $equipamentos = mysqli_query($conn, $sql);
                 
                 // Tabela de equipamentos
-                echo "<table class='table table-striped table-hover table-responsive-sm' id='estilo-table'>";
+                echo "<table class='table table-striped table-hover table-responsive-sm table-sm mb-0' id='estilo-table'>";
                 echo "<tr class='thead'>
                         <th>#</th>
                         <th>Tipo</th>
@@ -146,7 +146,7 @@
 
                     if (!$('#confirm-delete').lenght) {
                         $('body').append(
-                            '<div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog"aria-labelledby="exampleModalCenterTitle" aria-hidden="true"><div class="modal-dialog modal-dialog-centered" role="document"><div class="modal-content"><div class="modal-header bg-danger text-white"><h5 class="modal-title">Remoção de equipamentos</h5><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="modal-body">Tem certeza de que deseja <strong>excluir</strong> este equipamento?</div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button><a class="btn btn-danger text-white" id="dataConfirmOKD">Excluir</a></div></div></div></div>'
+                            '<div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog"aria-labelledby="exampleModalCenterTitle" aria-hidden="true"><div class="modal-dialog modal-dialog-centered" role="document"><div class="modal-content"><div class="modal-header bg-danger text-white"><h5 class="modal-title">ATENÇÃO</h5><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="modal-body">Se excluir este equipamento, <b>várias registros das empresas serão apagados</b>. <br>Poderá ter danos no sistema. Certifique-se antes!</div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button><a class="btn btn-danger text-white" id="dataConfirmOKD">Excluir</a></div></div></div></div>'
                         );
                     }
 

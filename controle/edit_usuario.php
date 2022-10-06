@@ -103,7 +103,7 @@
                 
             </div>
             <div class="row">
-                <a class="btn btn-secondary ml-4 mt-4 px-5" href="usuarios.php">Voltar</a>
+                <a class="btn btn-secondary btn-sm ml-4 mt-4 px-5" href="usuarios.php">Voltar</a>
             </div>
         </div>
         <!--Footer-->

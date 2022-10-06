@@ -25,7 +25,6 @@
         mysqli_query($conn, $sql);
     }
 
-
     // Faz uma consulta na tabela de empresas para buscar todas as 
     // informações através do ID encontrado no IF acima
     $sql1 = "SELECT * FROM empresas WHERE id_empresas = $var_cod_int";
@@ -60,7 +59,7 @@
     <header>
         <nav class="navbar fixed-top">
             <div class="container">
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand" href="../index">
                     <img src="../assets/img/easytec_logo_mini_2.png" width="130" alt="Easytec Brasil"
                         loading="Easytec Brasil" />
                 </a>
@@ -69,11 +68,9 @@
                         aria-expanded="false">
                         Gerenciamento
                     </a>
-                    <a class="nav-link text-white relatorio" href="deslogando.php" role="button"
-                        aria-expanded="false">Sair <i class="bi bi-box-arrow-right"></i></a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="usuarios.php">Usuários</a>
-                        <a class="dropdown-item" href="#">Equipamentos</a>
+                        <a class="dropdown-item" href="../index.php">Empresas</a>
+                        <a class="dropdown-item" href="equipamentos.php">Equipamentos</a>
                     </div>
                 </div>
             </div>
@@ -81,15 +78,28 @@
     </header>
 
     <div class="container" style="margin-top: 6%; margin-bottom: 2%;">
-        <h5 class="mb-4 justify-content-center p-2"><b>Equipamentos</b> - <?php echo $empresas['descricao']; ?></h5>
-        <div class="col-12" id="card-form" style="margin-top:2%; padding:2%;">
-            <div class="row">
-                <a href="cadastra_equipamentos_emp.php?id_empresa=<?php echo $var_cod_int; ?>">
-                    <button class="btn btn-success mx-5 mb-3" type="submit" name="btCadastrarEquipamentos_emp"
-                        value="Cadastrar">Cadastrar <i class="bi bi-plus-circle"></i></button></a>
-            </div>
 
-            <?php
+        <div class="row justify-content-center">
+            <h5 class="mb-2 p-2"><b>Equipamentos</b> - <?php echo $empresas['descricao']; ?></h5>
+        </div>
+        <div class="row ">
+            <form method="post" action="" class="col-6 mx-5 mb-4">
+                <div class="col">
+                    <i class="bi-search"></i><label for="buscar">Buscar</label>
+                    <input type="text" class="form-control form-control-sm busca-user"
+                        placeholder="Pesquise pela descrição, tipo, marca, modelo, IP, MAC e patrimônio"
+                        name="campo_pesquisa">
+                </div>
+            </form>
+            <div class="col mb-4 justify-content-end">
+                <a href="cadastra_equipamentos_emp.php?id_empresa=<?php echo $var_cod_int; ?>">
+                    <button class="btn btn-success" type="submit" name="btCadastrarEquipamentos_emp"
+                        value="Cadastrar">Cadastrar <i class="bi bi-plus-circle"></i></button></a>
+                <a class="btn btn-sm btn-secondary mb-4 ml-4 mt-4 px-5" href="../index.php">Voltar</a>
+            </div>
+        </div>
+
+        <?php
                 echo "<div class='container bg-white table-wrapper-scroll-y my-custom-scrollbar' style='margin-bottom: 1%;'>";
                                         
                 $sql = "SELECT a.tipo_equip, a.marca_equip, 
@@ -99,12 +109,24 @@
                         FROM equipamentos a 
                         INNER JOIN equipamentos_emp b ON b.id_equipamentos = a.id_equipamentos
                         WHERE b.id_empresas = $var_cod_int";
+
+                if(isset($_POST["campo_pesquisa"])){
+                    $valor = $_POST["campo_pesquisa"];
+                    $sql = "SELECT a.tipo_equip, a.marca_equip, 
+                                    a.modelo_equip, a.descricao_equip, 
+                                    b.ip_equip, b.mac_addr_equip, b.patrimonio_equip, b.id_equipamentos_emp 
+                            FROM equipamentos a INNER JOIN equipamentos_emp b ON b.id_equipamentos = a.id_equipamentos
+                            WHERE a.tipo_equip LIKE '%$valor%' OR a.marca_equip LIKE '%$valor%' OR a.modelo_equip LIKE '%$valor%'
+                                OR a.descricao_equip LIKE '%$valor%' OR b.ip_equip LIKE '%$valor%' OR b.mac_addr_equip LIKE '%$valor%'
+                                OR b.patrimonio_equip LIKE '%$valor%'";
+                }	        
                                                     
                 $equipamentos_emp = mysqli_query($conn, $sql);
                                                 
                 // Tabela de equipamentos
-                echo "<table class='table table-striped table-hover table-bordered table-responsive-sm'>";
-                echo "<tr class='thead'>
+                echo "<table class='table table-striped table-hover 
+                        table-bordered table-responsive-sm table-sm mb-0' id='estilo-table'>";
+                echo "<tr class='thead bg-dark text-white'>
                     <th>Descrição</th>
                     <th>Tipo</th>
                     <th>Marca</th>
@@ -130,14 +152,14 @@
                 echo "</table>";
                 echo "</div>";
             ?>
-        </div>
+
         <div class="row">
-            <a class="btn btn-secondary mb-4 ml-4 mt-4 px-5" href="../index.php">Voltar</a>
+
         </div>
     </div>
 
 
-    <footer class="text-secondary">
+    <footer class="text-secondary fixed-bottom">
         <div class="text-center p-2">
             © 2022 Copyright Easytec Brasil
         </div>

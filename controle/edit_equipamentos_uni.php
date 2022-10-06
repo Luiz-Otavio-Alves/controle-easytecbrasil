@@ -28,14 +28,14 @@
 
     // Faz uma consulta na tabela de empresas para buscar todas as 
     // informações através do ID encontrado no IF acima
-    $sql1 = "SELECT * FROM empresas WHERE id_empresas = $var_cod_int";
+    $sql1 = "SELECT * FROM empresas WHERE id_empresas = $var_cod_int_empresa";
     $empresa = mysqli_query($conn, $sql1);
     $empresas = mysqli_fetch_array($empresa);
 
     // Faz uma consulta na tabela de empresas para buscar todas as 
     // informações através do ID encontrado no IF acima
-    $sql = "SELECT * FROM equipamentos_emp WHERE id_equipamentos_emp = $var_cod_int";
-    $equipamento_emp = mysqli_query($conn, $sql);
+    $sql2 = "SELECT * FROM equipamentos INNER JOIN equipamentos_emp WHERE id_equipamentos_emp = $var_cod_int";
+    $equipamento_emp = mysqli_query($conn, $sql2);
     $equipamentos_emp = mysqli_fetch_array($equipamento_emp);
 ?>
 
@@ -70,82 +70,47 @@
                     <img src="../assets/img/easytec_logo_mini_2.png" width="130" alt="Easytec Brasil"
                         loading="Easytec Brasil" />
                 </a>
-                <div class="dropdown nav justify-content-end">
-                    <a class="nav-link text-white dropdown-toggle" href="#" role="button" data-toggle="dropdown"
-                        aria-expanded="false">
-                        Gerenciamento
-                    </a>
-                    <a class="nav-link text-white relatorio" href="deslogando.php" role="button"
-                        aria-expanded="false">Sair <i class="bi bi-box-arrow-right"></i></a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="index.php">Empresas</a>
-                        <a class="dropdown-item" href="usuarios.php">Usuários</a>
-                    </div>
-                </div>
             </div>
         </nav>
     </header>
 
     <div class="container" style="margin-top: 6%; margin-bottom: 2%;">
         <div class="container section row">
-            <h5>Cadastro de equipamentos</h5>
+            <h5>Eequipamentos</h5>
 
             <!---Formulario--->
-            <form method="post" action="registration_update.php?cadastra_equip_emp=<?php echo $var_cod_int; ?>"
+            <form method="post" action="registration_update.php?edita_equip_emp=<?php echo $var_cod_int; ?>&&pega_id_emp=<?php echo $var_cod_int_empresa; ?>"
                 class="card col-12" id="card-form" style="margin-top:2%; padding:4%;">
-
-
                 <div class="row" style=" margin-top:1%;">
-                    <div class="form-outline mb-3 mx-4 col-6">
-                        <label class="form-label" for="descricao">Equipamento</label>
-                        <select class="form-control custom-select" name="id_equipamentos" id="empresa">
-                            <?php
-                                $sql = "SELECT * 
-                                        FROM equipamentos";
-                                $equipamentos = mysqli_query($conn, $sql);
-
-                                $sql3 = "SELECT * FROM equipamentos a
-                                        INNER JOIN equipamentos_emp b
-                                        WHERE b.id_equipamentos_emp = $var_cod_int";
-
-                                $equipamento_sel = mysqli_query($conn, $sql3);
-                                $equipamentos_sel = mysqli_fetch_array($equipamento_sel);
-
-                                echo "<option>
-                                    ".$equipamentos_sel["id_equipamentos"]." - ".$equipamentos_sel["tipo_equip"].
-                                    " - ".$equipamentos_sel["marca_equip"].
-                                    " - ".$equipamentos_sel["modelo_equip"].
-                                    " - ".$equipamentos_sel["descricao_equip"].
-                                "</option>";
-                                while($equipamento = mysqli_fetch_array($equipamentos)){
-                                    echo "<option>
-                                            ".$equipamento["id_equipamentos"]." - ".$equipamento["tipo_equip"].
-                                            " - ".$equipamento["marca_equip"].
-                                            " - ".$equipamento["modelo_equip"].
-                                            " - ".$equipamento["descricao_equip"].
-                                        "</option>";
-                                }
-                            ?>
-                        </select>
-                    </div>
-                    <div class="form-group mb-3 mx-2 col-2">
+                    <div class="form-group mb-3 mx-4 col-3">
                         <label for="marca">IP</label>
                         <input type="text" class="form-control form-control-sm required" name="ip_equip"
                             value="<?php echo $equipamentos_emp["ip_equip"]; ?>" />
                     </div>
-                    <div class="form-outline mb-3  col-3">
+                    <div class="form-outline mb-3 mx-4 col-3">
                         <label class="form-label" for="modelo">Mac Address</label>
                         <input type="text" class="form-control form-control-sm" name="mac_addr_equip"
                             value="<?php echo $equipamentos_emp["mac_addr_equip"]; ?>" />
                     </div>
-
-                </div>
-                <div class="row">
                     <div class="form-outline mb-3 mx-4 col-3">
                         <label class="form-label" for="endereco">Patrimônio</label>
                         <input type="text" class="form-control form-control-sm" name="patrimonio_equip"
                             value="<?php echo $equipamentos_emp["patrimonio_equip"]; ?>" />
                     </div>
+                </div>
+                <div class="row">
+                    <div class="form-outline mb-3 mx-4 col-3">
+                        <label class="form-label" for="endereco">Usuário</label>
+                        <input type="text" class="form-control form-control-sm" name="user_equip_emp"
+                            value="<?php echo $equipamentos_emp["user_equip_emp"]; ?>" />
+                    </div>
+                    <div class="form-outline mb-3 mx-4 col-3">
+                        <label class="form-label" for="endereco">Senha</label>
+                        <input type="text" class="form-control form-control-sm" name="pass_equip_emp"
+                            value="<?php echo $equipamentos_emp["pass_equip_emp"]; ?>" />
+                    </div>
+                </div>
+                <div class="row">
                     <div class="form-outline mb-4 mx-4 col">
                         <label class="form-label" for="senha">Anotações do equipamento</label>
                         <textarea type="text" class="form-control" name="anotacoes_equip"
@@ -155,14 +120,14 @@
 
                 <div class="row justify-content-center">
                     <a class="ml-4 mt-4 px-4"><button class="btn btn-dark" type="submit"
-                            name="btCadastrarEquipamentos_emp" value="Cadastrar">Cadastrar
-                            <i class="bi bi-plus-circle"></i></button></a>
+                        name="btAtualizarEquipamentos_emp" value="Atualizar">Atualizar
+                        <i class="bi bi-repeat"></i></button></a>
                 </div>
         </div>
         </form>
         <!---Termina formulario--->
         <div class="row">
-            <a class="btn btn-secondary mb-4 ml-4 mt-4 px-5"
+            <a class="btn btn-secondary btn-sm mb-4 ml-4 mt-4 px-5"
                 href="edit_equipamentos_emp.php?id_empresa=<?php echo $var_cod_int_empresa; ?>">Voltar</a>
         </div>
     </div>

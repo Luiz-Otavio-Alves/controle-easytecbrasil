@@ -52,7 +52,7 @@
     <header>
         <nav class="navbar fixed-top">
             <div class="container">
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand" href="../index.php">
                     <img src="../assets/img/easytec_logo_mini_2.png" width="130" alt="Easytec Brasil"
                         loading="Easytec Brasil" />
                 </a>
@@ -61,11 +61,9 @@
                         aria-expanded="false">
                         Gerenciamento
                     </a>
-                    <a class="nav-link text-white relatorio" href="deslogando.php" role="button"
-                        aria-expanded="false">Sair <i class="bi bi-box-arrow-right"></i></a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="usuarios.php">Usuários</a>
-                        <a class="dropdown-item" href="#">Equipamentos</a>
+                        <a class="dropdown-item" href="../index.php">Empresas</a>
+                        <a class="dropdown-item" href="equipamentos.php">Equipamentos</a>
                     </div>
                 </div>
             </div>
@@ -96,29 +94,29 @@
                         <h6 class="row justify-content-center text-secondary">Informações Administrativas</h6>
                         <div class="row" style=" margin-top:1%;">
                             <div class="form-outline mb-4 mx-4 col-5">
-                                <label class="form-label" for="descricao">Descrição</label>
+                                <label class="form-label" for="descricao">Descrição <strong class="text-danger">*</strong></label>
                                 <input type="text" class="form-control form-control-sm required" name="descricao"
                                     value="<?php echo $empresas['descricao']; ?>" />
                             </div>
                             <div class="form-group mb-4 mx-3 col-3">
-                                <label for="cnpj">CNPJ</label>
+                                <label for="cnpj">CNPJ <strong class="text-danger">*</strong></label>
                                 <input type="text" class="form-control form-control-sm required" name="cnpj"
                                     value="<?php echo $empresas['cnpj']; ?>" />
                             </div>
                             <div class="form-outline mb-3 mx-3 col-2">
-                                <label class="form-label" for="telefone">Telefone</label>
+                                <label class="form-label" for="telefone">Telefone <strong class="text-danger">*</strong></label>
                                 <input type="text" class="form-control form-control-sm" name="tel_responsavel"
                                     value="<?php echo $empresas['tel_responsavel']; ?>" />
                             </div>
                         </div>
                         <div class="row">
                             <div class="form-outline mb-3 mx-4 col-5">
-                                <label class="form-label" for="endereco">Endereço</label>
+                                <label class="form-label" for="endereco">Endereço <strong class="text-danger">*</strong></label>
                                 <input type="text" class="form-control form-control-sm" name="endereco_emp"
                                     placeholder="Rua/N°, Bairro" value="<?php echo $empresas['endereco_emp']; ?>" />
                             </div>
                             <div class="form-outline mb-3 mx-3 col-3">
-                                <label class="form-label" for="cidade">Cidade</label>
+                                <label class="form-label" for="cidade">Cidade <strong class="text-danger">*</strong></label>
                                 <input type="text" class="form-control form-control-sm" name="cidade_emp"
                                     value="<?php echo $empresas['cidade_emp']; ?>" />
                             </div>
@@ -140,7 +138,7 @@
                                     placeholder="TI" value="<?php echo $empresas['responsavel']; ?>" />
                             </div>
                             <div class="form-outline mb-3 mx-3 col-4">
-                                <label class="form-label" for="email">E-mail</label>
+                                <label class="form-label" for="email">E-mail <strong class="text-danger">*</strong></label>
                                 <input type="email" class="form-control form-control-sm" name="mail_responsavel"
                                     placeholder="exemplo@exemplo.com.br"
                                     value="<?php echo $empresas['mail_responsavel']; ?>" />
@@ -159,7 +157,7 @@
                             <div class="col-5 mx-4" style="margin-top:2%;">
                                 <div class="row">
                                     <div class="form-group col-8 mb-3">
-                                        <label for="cnpj">Tipo de Serviço</label>
+                                        <label for="cnpj">Tipo de Serviço <strong class="text-danger">*</strong></label>
                                         <select class="form-control" name="tipo_servico" id="empresa">
                                             <option><?php echo $empresas['tipo_servico']; ?></option>
                                             <option>Virtual Dedicado</option>
@@ -168,7 +166,7 @@
                                         </select>
                                     </div>
                                     <div class="form-outline col-4 mb-3">
-                                        <label class="form-label" for="codigo">Código</label>
+                                        <label class="form-label" for="codigo">Código  <strong class="text-danger">*</strong></label>
                                         <input type="text" class="form-control form-control-sm" name="cod_ligacao"
                                             value="<?php echo $empresas['cod_ligacao']; ?>" />
                                     </div>
@@ -189,12 +187,12 @@
                             <div class="col-5 mx-3" style="margin-top:1%;">
                                 <div class="row">
                                     <div class="form-outline mb-3 col-7">
-                                        <label class="form-label" for="ip">IP Pabx</label>
+                                        <label class="form-label" for="ip">IP Pabx <strong class="text-danger">*</strong></label>
                                         <input type="text" class="form-control form-control-sm" name="ip_pabx"
                                             value="<?php echo $empresas['ip_pabx']; ?>" />
                                     </div>
                                     <div class="form-outline mb-3 col-5">
-                                        <label class="form-label" for="password_pabx">Senha Pabx</label>
+                                        <label class="form-label" for="password_pabx">Senha Pabx <strong class="text-danger">*</strong></label>
                                         <input type="text" class="form-control form-control-sm" name="password_pabx"
                                             value="<?php echo $empresas['password_pabx']; ?>" />
                                     </div>
@@ -231,11 +229,11 @@
                 </div>
             </form>
             <!---Termina formulario--->
-
-            <div class="row justify-content-end">
-                <a class="btn btn-secondary mb-4 ml-4 mt-4 px-5" href="../index.php">Voltar</a>
+            <div class="row">
+                <a class="btn btn-secondary btn-sm mb-4 ml-4 mt-4 px-5" href="../index.php">Voltar</a>
             </div>
         </div>
+        <p><strong class="text-danger">*</strong> Campos obrigatórios</p>
     </div>
 
     <footer class="text-secondary">
