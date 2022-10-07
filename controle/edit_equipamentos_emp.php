@@ -18,7 +18,7 @@
         $var_cod_int = intval($var_cod);
     }
 
-    //Exclui equipamentos cadastrada
+    // Exclui equipamentos cadastrada
     if(isset($_REQUEST["id_excluir"])){
         $var_cod_int_excluir = $_REQUEST["id_excluir"];
         $sql = "DELETE FROM equipamentos_emp WHERE id_equipamentos_emp = $var_cod_int_excluir";
@@ -30,6 +30,49 @@
     $sql1 = "SELECT * FROM empresas WHERE id_empresas = $var_cod_int";
     $empresa = mysqli_query($conn, $sql1);
     $empresas = mysqli_fetch_array($empresa);
+    
+
+    // Faz a consulta no banco parar buscar informações de 
+    // quantidade de equipamentos pelas empresas
+    $sqltotal = "SELECT COUNT(*) as total
+        FROM equipamentos_emp a INNER JOIN equipamentos b 
+        ON a.id_equipamentos = b.id_equipamentos
+        WHERE a.id_empresas = $var_cod_int AND b.id_equipamentos != ''";
+        
+        $equipamento_qtd = mysqli_query($conn, $sqltotal);
+        $equipamentos_qtd = mysqli_fetch_array($equipamento_qtd);
+
+    $sqlserver = "SELECT COUNT(*) as totalservers
+        FROM equipamentos_emp a INNER JOIN equipamentos b 
+        ON a.id_equipamentos = b.id_equipamentos
+        WHERE a.id_empresas = $var_cod_int AND b.id_equipamentos = 7";
+        
+        $equipamento_server = mysqli_query($conn, $sqlserver);
+        $equipamentos_server = mysqli_fetch_array($equipamento_server);  
+        
+    $sqltel = "SELECT COUNT(*) as totaltel
+        FROM equipamentos_emp a INNER JOIN equipamentos b 
+        ON a.id_equipamentos = b.id_equipamentos
+        WHERE (a.id_empresas = $var_cod_int AND b.id_equipamentos = 6) OR (a.id_empresas = $var_cod_int AND b.id_equipamentos = 5)";
+        
+        $equipamento_tel = mysqli_query($conn, $sqltel);
+        $equipamentos_tel = mysqli_fetch_array($equipamento_tel);    
+        
+    $sqlata = "SELECT COUNT(*) as totalata
+        FROM equipamentos_emp a INNER JOIN equipamentos b 
+        ON a.id_equipamentos = b.id_equipamentos
+        WHERE a.id_empresas = $var_cod_int AND b.id_equipamentos = 10";
+        
+        $equipamento_ata = mysqli_query($conn, $sqlata);
+        $equipamentos_ata = mysqli_fetch_array($equipamento_ata);    
+
+    $sqlsfio = "SELECT COUNT(*) as totalsfio
+        FROM equipamentos_emp a INNER JOIN equipamentos b 
+        ON a.id_equipamentos = b.id_equipamentos
+        WHERE a.id_empresas = $var_cod_int AND b.id_equipamentos = 10";
+        
+        $equipamento_sfio = mysqli_query($conn, $sqlsfio);
+        $equipamentos_sfio = mysqli_fetch_array($equipamento_sfio);       
 ?>
 
 <!DOCTYPE html>
@@ -39,7 +82,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Easytec Brasil | Equipamentos</title>
-    <link rel="shortcut icon" href="img/logo.png" />
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -76,7 +118,6 @@
             </div>
         </nav>
     </header>
-
     <div class="container" style="margin-top: 6%; margin-bottom: 2%;">
 
         <div class="row justify-content-center">
@@ -95,16 +136,67 @@
                 <a href="cadastra_equipamentos_emp.php?id_empresa=<?php echo $var_cod_int; ?>">
                     <button class="btn btn-success" type="submit" name="btCadastrarEquipamentos_emp"
                         value="Cadastrar">Cadastrar <i class="bi bi-plus-circle"></i></button></a>
+                <a class="btn btn-sm btn-outline-dark mb-4 ml-3 mt-4 px-3" 
+                    data-toggle='modal' href='' data-target='#Modalqtd'>Contagem <i class="bi bi-eye-fill"></i></a>        
                 <a class="btn btn-sm btn-secondary mb-4 ml-4 mt-4 px-5" href="../index.php">Voltar</a>
             </div>
         </div>
+
+        <div class="modal" id="Modalqtd" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-scrollable">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Equipamentos</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row" style="margin-top:3%;">
+                                        <div class="form-outline mb-3 mx-4 col-3 bg-success text-white px-2" style="margin:1%">
+                                            <label for="descricao"><b>TOTAL</b></label>
+                                                <p style="font-size: 36px"><?php echo $equipamentos_qtd["total"]; ?></p>
+                                        </div>
+                                        <div class="form-outline mb-3 mx-2 col-3 bg-danger text-white px-2" style="margin:1%">
+                                            <label for="descricao"><b>SERVIDORES</b></label>
+                                                <p style="font-size: 20px"><?php echo $equipamentos_server["totalservers"]; ?></p>
+                                        </div>
+                                        <div class="form-outline mb-3 mx-4 col-3 bg-info text-white px-2" style="margin:1%">
+                                            <label for="descricao"><b>MIKROTIK</b></label>
+                                                <p style="font-size: 20px"><?php echo $equipamentos_qtd["total"]; ?></p>
+                                        </div>
+                                    </div>
+                                    <div class="row">    
+                                        <div class="form-outline mb-3 mx-4 col-3 bg-info text-white px-2" style="margin:1%">
+                                            <label for="descricao"><b>TELEFONES IP</b></label>
+                                                <p style="font-size: 20px"><?php echo $equipamentos_tel["totaltel"]; ?></p>
+                                        </div>
+                                        <div class="form-outline mb-3 mx-2 col-3 bg-info text-white px-2" style="margin:1%">
+                                            <label for="descricao"><b>ATA</b></label>
+                                                <p style="font-size: 20px"><?php echo $equipamentos_ata["totalata"]; ?></p>
+                                        </div>
+                                        <div class="form-outline mb-3 mx-4 col-3 bg-info text-white px-2" style="margin:1%">
+                                            <label for="descricao"><b>RAMAIS S FIO</b></label>
+                                                <p style="font-size: 20px"><?php echo $equipamentos_sfio["totalsfio"]; ?></p>
+                                        </div>
+                                    </div>
+                                    
+       
+                                   <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
         <?php
                 echo "<div class='container bg-white table-wrapper-scroll-y my-custom-scrollbar' style='margin-bottom: 1%;'>";
                                         
                 $sql = "SELECT a.tipo_equip, a.marca_equip, 
-                            a.modelo_equip, a.descricao_equip, 
-                            b.ip_equip, b.mac_addr_equip, b.patrimonio_equip, b.id_equipamentos_emp
+                            a.modelo_equip, a.descricao_equip, anotacoes_equip,
+                            b.ip_equip, b.mac_addr_equip, b.patrimonio_equip, 
+                            b.id_equipamentos_emp, b.user_equip_emp, b.pass_equip_emp
 
                         FROM equipamentos a 
                         INNER JOIN equipamentos_emp b ON b.id_equipamentos = a.id_equipamentos
@@ -144,10 +236,80 @@
                         <td>".$equipamento_emp["ip_equip"]."</td>
                         <td>".$equipamento_emp["mac_addr_equip"]."</td>
                         <td>".$equipamento_emp["patrimonio_equip"]."</td>
-                        <td><a class='text-dark' href='edit_equipamentos_uni.php?id_equipamento_emp=".$equipamento_emp["id_equipamentos_emp"]."&&id_empresa=".$empresas['id_empresas']."'><i class='bi-pencil-square'></i></a>
+                        <td><a class='text-secondary px-1' data-toggle='modal' href='' 
+                                data-target='#ModalEquipaments".$equipamento_emp["id_equipamentos_emp"]."'><i class='bi-eye-fill'></i></a>
+                            <a class='text-dark' href='edit_equipamentos_uni.php?id_equipamento_emp=".$equipamento_emp["id_equipamentos_emp"]."&&id_empresa=".$empresas['id_empresas']."'><i class='bi-pencil-square'></i></a>
                             <a class='text-danger px-2' data-confirm='Tem certeza que deseja excluir este equipamento?' 
                                 href='edit_equipamentos_emp.php?id_empresa=".$empresas['id_empresas']."&&id_excluir=".$equipamento_emp["id_equipamentos_emp"]."'><i class='bi-trash-fill'></i></a></td>
                         </tr>";
+
+                        echo '<div class="modal fade" id="ModalEquipaments'.$equipamento_emp['id_equipamentos_emp'].'" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-scrollable modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">'.$equipamento_emp['tipo_equip'].'</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row" style="margin-top:3%;">
+                                        <div class="form-outline mb-3 mx-3 col-4">
+                                            <label for="descricao"><b>Descrição: </b></label>
+                                                '.$equipamento_emp['descricao_equip'].'
+                                        </div>
+                                        <div class="form-outline mb-3 mx-2 col-3">
+                                            <label for="tipo"><b>Tipo: </b></label>
+                                                '.$equipamento_emp['tipo_equip'].'
+                                        </div>
+                                        <div class="form-outline mb-3 mx-3 col">
+                                            <label for="marca"><b>Marca: </b></label>
+                                                '.$equipamento_emp['marca_equip'].'
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-outline mb-3 mx-3 col-4">
+                                            <label for="modelo"><b>Modelo: </b></label>
+                                                '.$equipamento_emp['modelo_equip'].'
+                                        </div>
+                                        <div class="form-outline mb-3 mx-2 col-3">
+                                            <label for="IP"><b>IP: </b></label>
+                                                '.$equipamento_emp['ip_equip'].'
+                                        </div>
+                                        <div class="form-outline mb-3 mx-2 col-3">
+                                            <label for="mac"><b>MAC: </b></label>
+                                                '.$equipamento_emp['mac_addr_equip'].'
+                                        </div>
+                                    </div> 
+                                    <div class="row">
+                                        <div class="form-outline mb-3 mx-3 col-4">
+                                            <label for="patrimonio"><b>Patrimônio: </b></label>
+                                                '.$equipamento_emp['patrimonio_equip'].'
+                                        </div>
+                                        <div class="form-outline mb-3 mx-2 col-3">
+                                            <label for="usuario"><b>Usuário: </b></label>
+                                                '.$equipamento_emp['user_equip_emp'].'
+                                        </div>
+                                        <div class="form-outline mb-3 mx-2 col-3">
+                                            <label for="senha"><b>Senha: </b></label>
+                                                '.$equipamento_emp['pass_equip_emp'].'
+                                        </div>
+                                    </div> 
+                                    <div class="row">
+                                        <div class="form-outline mb-4 mx-4 col">
+                                            <label class="form-label" for="anot"><b>Anotações</b></label><br>
+                                            <textarea type="text" class="form-control bg-white" name="anotacoes_emp"
+                                                placeholder="'.$equipamento_emp['anotacoes_equip'].'" disabled></textarea>
+                                        </div>
+                                    </div> 
+       
+                                   <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>';     
                 }	
                 echo "</table>";
                 echo "</div>";
@@ -159,7 +321,7 @@
     </div>
 
 
-    <footer class="text-secondary fixed-bottom">
+    <footer class="text-secondary">
         <div class="text-center p-2">
             © 2022 Copyright Easytec Brasil
         </div>

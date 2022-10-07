@@ -69,7 +69,7 @@
         <div class="row">
 
             <!--inicia campo de pesquisa-->
-            <form method="post" action="#" class="bg-light col-lg-5 busca-user" style="margin-left: 2%; padding:1%;">
+            <form method="post" action="" class="bg-light col-lg-5 busca-user" style="margin-left: 2%; padding:1%;">
                 <div class="col">
                     <i class="bi-search"></i>
                     <label for="buscar">Buscar</label>
@@ -152,9 +152,6 @@
                                 </li>
                                 <li class="nav-item" role="presentation">
                                     <button class="nav-link" id="profile-tab" data-toggle="tab" data-target="#profile'.$empresa["id_empresas"].'" type="button" role="tab" aria-controls="profile" aria-selected="false">Técnico</button>
-                                </li>
-                                <li class="nav-item" role="presentation">
-                                    <button class="nav-link" id="equipaments-tab" data-toggle="tab" data-target="#equipaments'.$empresa["id_empresas"].'" type="button" role="tab" aria-controls="equipaments" aria-selected="false">Equipamentos</button>
                                 </li>
                             </ul>
                             <div class="tab-content" id="myTabContent">
@@ -261,29 +258,6 @@
                                         </div>
                                     </div>   
                                 </div>
-
-                                <!----------------------------------------------->
-                                <!------------------EQUIPAMENTOS----------------->
-                                <!----------------------------------------------->
-                                <div class="tab-pane fade" id="equipaments'.$empresa["id_empresas"].'" 
-                                    role="tabpanel" aria-labelledby="equipaments-tab">
-                                    <div class="row" style="margin-top:3%;">
-                                        <div class="form-outline mb-4 mx-4 col-2 bg-warning">
-                                            <label p-4 style="font-size: 50px;" class="text-white" for=""><b>Total </b></label>
-                                            <p style="font-size: 50px" class="text-white justify-content-center">'.$empresa["id_empresas"].'</p>
-                                        </div>
-                                        <div class="form-outline mb-4 mx-4 col-3">
-                                            <label for=""><b>TESTE </b></label>
-                                            
-                                        </div>
-                                        <div class="form-outline mb-4 mx-4 col">
-                                            <label for=""><b>TESTE </b></label>
-                                            
-                                        </div>
-                                    </div>
-                                    
-                                </div>
-                                        
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
                                 </div>

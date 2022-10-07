@@ -54,16 +54,16 @@
                     $mac_addr_equip = $_POST["mac_addr_equip"];
                     $patrimonio_equip = $_POST["patrimonio_equip"];
                     $user_equip_emp = $_POST["user_equip_emp"];
-                    $pass_equip_emp = $_POST["pass_equi_emp"];
+                    $pass_equip_emp = $_POST["pass_equip_emp"];
                     $anotacoes_equip = $_POST["anotacoes_equip"];
 
                     $rest = substr($id_equipamentos, 0, 2);
                     //echo $rest;
                     
                     $sqlCadastraEquipamentos_emp = "INSERT INTO equipamentos_emp VALUES (null, 
-                                                    '$rest', '$id_empresas', '$ip_equip', '$mac_addr_equip',
-                                                    '$user_equip_emp', '$pass_equip_emp',
-                                                    '$patrimonio_equip', '$anotacoes_equip')";
+                                                    '$rest', '$id_empresas', '$ip_equip','$user_equip_emp', 
+                                                    '$pass_equip_emp', '$mac_addr_equip',
+                                                    '$patrimonio_equip','$anotacoes_equip')";
 
                     $result_sql = mysqli_query($conn, $sqlCadastraEquipamentos_emp);
 
@@ -123,31 +123,30 @@
                 if (isset($_POST["btAtualizarEquipamentos_emp"])) {
                     $var_cod_emp = $_REQUEST["edita_equip_emp"];
                     $var_cod_int = intval($var_cod_emp); //Passa o valor pra variável
-                    echo $var_cod_int;
+                    //echo $var_cod_int;
 
                     $var_cod_id_emp = $_REQUEST["pega_id_emp"];
                     $var_cod_int_id_emp = intval($var_cod_id_emp);
-                    echo $var_cod_int_id_emp;
+                    //echo $var_cod_int_id_emp;
 
-                    $id_equipamentos = $_POST["id_equipamentos"];
-                    $id_empresas = $var_cod_int_id_emp;
+                    //$id_equipamentos = $_POST["id_equipamentos"];
+                    //$id_empresas = $var_cod_int_id_emp;
                     $ip_equip = $_POST["ip_equip"];
                     $mac_addr_equip = $_POST["mac_addr_equip"];
                     $patrimonio_equip = $_POST["patrimonio_equip"];
                     $user_equip_emp = $_POST["user_equip_emp"];
-                    $pass_equip_emp = $_POST["pass_equi_emp"];
+                    $pass_equip_emp = $_POST["pass_equip_emp"];
                     $anotacoes_equip = $_POST["anotacoes_equip"];
 
-                    $rest = substr($id_equipamentos, 0, 2);
+                    //$rest = substr($id_equipamentos, 0, 2);
                     //echo $rest;
 
-                    $sqlAtualizaEquipamentos = "UPDATE equipamentos_emp SET id_equipamentos = '$rest', 
-                                                                        id_empresas = '$id_empresas', 
+                    $sqlAtualizaEquipamentos = "UPDATE equipamentos_emp SET 
                                                                         ip_equip = '$ip_equip', 
+                                                                        user_equip_emp = '$user_equip_emp',
+                                                                        pass_equip_emp = '$pass_equip_emp',
                                                                         mac_addr_equip = '$mac_addr_equip',
                                                                         patrimonio_equip = '$patrimonio_equip',
-                                                                        user_equip_emp = '$user_equip_emp',
-                                                                        pass_equi_emp = '$pass_equip_emp',
                                                                         anotacoes_equip = '$anotacoes_equip'
                                                     WHERE id_equipamentos_emp = $var_cod_int";
 
@@ -276,11 +275,11 @@
                     $marca_equip = $_POST["marca_equip"];
                     $modelo_equip = $_POST["modelo_equip"];
                     $descricao_equip = $_POST["descricao_equip"];
-                    $var_cod = $_REQUEST["edit_equipamento"];
+
+                    $var_cod = $_REQUEST["id_edita_equipamentos"];
                     $var_cod_int = intval($var_cod); //Passa o valor pra variável
 
                     $sqlAtualizaEquipamentos = "UPDATE equipamentos SET tipo_equip = '$tipo_equip', 
-                                                                        cnpj = '$cnpj', 
                                                                         marca_equip = '$marca_equip', 
                                                                         modelo_equip = '$modelo_equip', 
                                                                         descricao_equip = '$descricao_equip'

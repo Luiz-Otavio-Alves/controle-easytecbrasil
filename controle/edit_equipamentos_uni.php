@@ -46,7 +46,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Easytec Brasil | Equipamentos</title>
-    <link rel="shortcut icon" href="img/logo.png" />
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -79,33 +78,35 @@
             <h5>Eequipamentos</h5>
 
             <!---Formulario--->
-            <form method="post" action="registration_update.php?edita_equip_emp=<?php echo $var_cod_int; ?>&&pega_id_emp=<?php echo $var_cod_int_empresa; ?>"
+            <form method="post"
+                action="registration_update.php?edita_equip_emp=<?php echo $var_cod_int; ?>&&pega_id_emp=<?php echo $var_cod_int_empresa; ?>"
                 class="card col-12" id="card-form" style="margin-top:2%; padding:4%;">
+
                 <div class="row" style=" margin-top:1%;">
                     <div class="form-group mb-3 mx-4 col-3">
-                        <label for="marca">IP</label>
+                        <label for="ip_equip">IP</label>
                         <input type="text" class="form-control form-control-sm required" name="ip_equip"
                             value="<?php echo $equipamentos_emp["ip_equip"]; ?>" />
                     </div>
                     <div class="form-outline mb-3 mx-4 col-3">
-                        <label class="form-label" for="modelo">Mac Address</label>
+                        <label class="form-label" for="mac_addr_equip">Mac Address</label>
                         <input type="text" class="form-control form-control-sm" name="mac_addr_equip"
                             value="<?php echo $equipamentos_emp["mac_addr_equip"]; ?>" />
                     </div>
                     <div class="form-outline mb-3 mx-4 col-3">
-                        <label class="form-label" for="endereco">Patrimônio</label>
+                        <label class="form-label" for="patrimonio_equip">Patrimônio</label>
                         <input type="text" class="form-control form-control-sm" name="patrimonio_equip"
                             value="<?php echo $equipamentos_emp["patrimonio_equip"]; ?>" />
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-outline mb-3 mx-4 col-3">
-                        <label class="form-label" for="endereco">Usuário</label>
+                        <label class="form-label" for="user_equip_emp">Usuário</label>
                         <input type="text" class="form-control form-control-sm" name="user_equip_emp"
                             value="<?php echo $equipamentos_emp["user_equip_emp"]; ?>" />
                     </div>
                     <div class="form-outline mb-3 mx-4 col-3">
-                        <label class="form-label" for="endereco">Senha</label>
+                        <label class="form-label" for="pass_equip_emp">Senha</label>
                         <input type="text" class="form-control form-control-sm" name="pass_equip_emp"
                             value="<?php echo $equipamentos_emp["pass_equip_emp"]; ?>" />
                     </div>
@@ -120,17 +121,16 @@
 
                 <div class="row justify-content-center">
                     <a class="ml-4 mt-4 px-4"><button class="btn btn-dark" type="submit"
-                        name="btAtualizarEquipamentos_emp" value="Atualizar">Atualizar
-                        <i class="bi bi-repeat"></i></button></a>
+                            name="btAtualizarEquipamentos_emp" value="Atualizar">Atualizar
+                            <i class="bi bi-repeat"></i></button></a>
                 </div>
+            </form>
+            <!---Termina formulario--->
+            <div class="row">
+                <a class="btn btn-secondary btn-sm mb-4 ml-4 mt-4 px-5"
+                    href="edit_equipamentos_emp.php?id_empresa=<?php echo $var_cod_int_empresa; ?>">Voltar</a>
+            </div>
         </div>
-        </form>
-        <!---Termina formulario--->
-        <div class="row">
-            <a class="btn btn-secondary btn-sm mb-4 ml-4 mt-4 px-5"
-                href="edit_equipamentos_emp.php?id_empresa=<?php echo $var_cod_int_empresa; ?>">Voltar</a>
-        </div>
-    </div>
     </div>
 
     <footer class="text-secondary">

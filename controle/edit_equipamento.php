@@ -101,7 +101,7 @@
                 </div>
 
                 <div class="row justify-content-center">
-                    <a class="ml-4 mt-4 px-4"><button class="btn btn-dark" type="submit" name="btAtualizaEquipamentosEmpresa"
+                    <a class="ml-4 mt-4 px-4"><button class="btn btn-dark" type="submit" name="btAtualizaEquipamentos"
                             value="Atualizar">Atualizar <i
                                         class="bi-repeat"></i></button></a>
                 </div>

@@ -88,26 +88,25 @@
                         <input type="text" class="form-control form-control-sm required" name="ip_equip" />
                     </div>
                     <div class="form-outline mb-3  col-3">
-                        <label class="form-label" for="modelo">Mac Address</label>
+                        <label class="form-label" for="mac_addr_equip">Mac Address</label>
                         <input type="text" class="form-control form-control-sm" name="mac_addr_equip" />
                     </div>
-
                 </div>
                 <div class="row">
                     <div class="form-outline mb-3 mx-4 col-3">
-                        <label class="form-label" for="endereco">Patrimônio</label>
+                        <label class="form-label" for="patrimonio_equip">Patrimônio</label>
                         <input type="text" class="form-control form-control-sm" name="patrimonio_equip" />
                     </div>
-                    
+
                     <div class="form-outline mb-3 mx-4 col-3">
-                        <label class="form-label" for="endereco">Usuário</label>
-                        <input type="text" class="form-control form-control-sm" name="user_equip_emp"/>
+                        <label class="form-label" for="user_equip_emp">Usuário</label>
+                        <input type="text" class="form-control form-control-sm" name="user_equip_emp" />
                     </div>
                     <div class="form-outline mb-3 mx-4 col-3">
-                        <label class="form-label" for="endereco">Senha</label>
-                        <input type="text" class="form-control form-control-sm" name="pass_equip_emp"/>
+                        <label class="form-label" for="pass_equip_emp">Senha</label>
+                        <input type="text" class="form-control form-control-sm" name="pass_equip_emp" />
                     </div>
-                
+
                     <div class="form-outline mb-4 mx-4 col">
                         <label class="form-label" for="senha">Anotações do equipamento</label>
                         <textarea type="text" class="form-control" name="anotacoes_equip"
@@ -145,4 +144,5 @@
     </script>
 
 </body>
+
 </html>
