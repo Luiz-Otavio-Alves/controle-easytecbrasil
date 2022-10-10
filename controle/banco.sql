@@ -56,7 +56,7 @@ CREATE TABLE equipamentos_emp(
 	id_equipamentos_emp INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
 	id_equipamentos INT(10) UNSIGNED NOT NULL, 
 	id_empresas INT(10) UNSIGNED NOT NULL,
-	ip_equi VARCHAR(50) NOT NULL,
+	ip_equip VARCHAR(50) NOT NULL,
 	user_equip_emp VARCHAR(25) NOT NULL, 
 	pass_equip_emp VARCHAR(25) NOT NULL,
 	mac_addr_equip VARCHAR(40) NOT NULL,
